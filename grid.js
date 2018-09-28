@@ -1,47 +1,52 @@
-let gb = document.getElementById('gamebox');
-let footer = document.getElementById('footer');
-let material = document.getElementById('material');
-let fraction = 10;
-let debugBorder = 2;
-let gbheight;
-let gbwidth;
-let shortest;
-let cellSize;
-let gameCols;
-let gameRows;
-let cellCount;
+window.onload = function() {
 
-function initGrid() {
-    // fill the gamebox with divs
 
-    gb = document.getElementById('gamebox');
-    gbheight = gb.offsetHeight;
-    gbwidth = gb.offsetWidth;
-    shortest = gbheight < gbwidth? gbheight : gbwidth;
+    let gb = document.getElementById('gamebox');
+    let footer = document.getElementById('footer');
+    let material = document.getElementById('material');
+    let fraction = 10;
+    let debugBorder = 2;
+    let gbheight;
+    let gbwidth;
+    let shortest;
+    let cellSize;
+    let gameCols;
+    let gameRows;
+    let cellCount;
 
-    // cellsize is a fraction of shortest dimension
-    cellSize = (shortest / fraction);
+    function initGrid() {
+        // fill the gamebox with divs
 
-    // calculate amount of expected cells
-    gameCols = Math.floor(gbwidth / (cellSize + debugBorder));
-    let gameColsRemainder = gbwidth % gameCols;
-    gameRows = Math.floor(gbheight / (cellSize + debugBorder));
-    let gameRowsRemainder = gbheight % gameRows;
-    cellCount = gameCols * gameRows;
+        gb = document.getElementById('gamebox');
+        gbheight = gb.offsetHeight;
+        gbwidth = gb.offsetWidth;
+        shortest = gbheight < gbwidth? gbheight : gbwidth;
 
-    for (let id = 0; id < cellCount; id++) {
-        let cell = document.createElement("div");
-        cell.setAttribute("class", "cell");
-        cell.setAttribute("id", id);
-        // cell.addEventListener("click", cellClick);
-        cell.style.height = cellSize + (gameRowsRemainder / gameRows) + "px";
-        cell.style.width = cellSize + (gameColsRemainder / gameCols) + "px";
-        gb.appendChild(cell);
+        // cellsize is a fraction of shortest dimension
+        cellSize = (shortest / fraction);
+
+        // calculate amount of expected cells
+        gameCols = Math.floor(gbwidth / (cellSize + debugBorder));
+        let gameColsRemainder = gbwidth % gameCols;
+        gameRows = Math.floor(gbheight / (cellSize + debugBorder));
+        let gameRowsRemainder = gbheight % gameRows;
+        cellCount = gameCols * gameRows;
+
+        for (let id = 0; id < cellCount; id++) {
+            let cell = document.createElement("div");
+            cell.setAttribute("class", "cell");
+            cell.setAttribute("id", id);
+            // cell.addEventListener("click", cellClick);
+            cell.style.height = cellSize + (gameRowsRemainder / gameRows) + "px";
+            cell.style.width = cellSize + (gameColsRemainder / gameCols) + "px";
+            gb.appendChild(cell);
+        }
+
     }
 
-}
+    initGrid();
 
-initGrid();
+}
 /*
 function clearGrid() {
     // dispose of gamebox element
