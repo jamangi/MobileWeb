@@ -6,7 +6,7 @@
 html {height: 100%;}
 body {height: 100%; background: var(--darkblue);}
 main {height: 90%; background: var(--darkblue);}
-footer {height: 10%; background: var(--lightblue);}
+footer {height: 10%; background: var(--darkblue);}
 article {height: 100%; width: 100%; float:left;}
 aside {height: 0%; background: #233d4d; width: 0%; height: 0%; float: right; display:none;}
 
