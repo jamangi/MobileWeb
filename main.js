@@ -24,7 +24,7 @@
 // let character;
 
 // exec
-initGrid();
+
 // initMapTiles("brownfloor_2_2.png");
 // initCharacter("titan");
 // updateCharacter("titan", currentCell);

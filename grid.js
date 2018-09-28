@@ -40,6 +40,8 @@ function initGrid() {
     }
 
 }
+
+initGrid();
 /*
 function clearGrid() {
     // dispose of gamebox element
