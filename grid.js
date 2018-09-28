@@ -20,7 +20,7 @@ function initGrid() {
         let cell = document.createElement("div");
         cell.setAttribute("class", "cell");
         cell.setAttribute("id", id);
-        cell.addEventListener("click", cellClick);
+        // cell.addEventListener("click", cellClick);
         cell.style.height = cellSize + (gameRowsRemainder / gameRows) + "px";
         cell.style.width = cellSize + (gameColsRemainder / gameCols) + "px";
         gb.appendChild(cell);
