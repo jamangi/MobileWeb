@@ -27,7 +27,7 @@ function initGrid() {
     }
 
 }
-
+/*
 function clearGrid() {
     // dispose of gamebox element
 
@@ -63,3 +63,4 @@ window.onresize = function(event) {
     // initMapTiles("brownfloor_2_2.png");
     // initCharacter(myName);
 }
+*/
