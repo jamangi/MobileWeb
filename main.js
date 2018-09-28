@@ -1,17 +1,6 @@
 window.onload = function(){
 	// grid
-	let gb = document.getElementById('gamebox');
-	let footer = document.getElementById('footer');
-	let material = document.getElementById('material');
-	let fraction = 10;
-	let debugBorder = 2;
-	let gbheight;
-	let gbwidth;
-	let shortest;
-	let cellSize;
-	let gameCols;
-	let gameRows;
-	let cellCount;
+	
 
 	//map
 	// let mapSize = [20, 20]
@@ -36,7 +25,7 @@ window.onload = function(){
 	// let character;
 
 	// exec
-	initGrid();
+	
 	// initMapTiles("brownfloor_2_2.png");
 	// initCharacter("titan");
 	// updateCharacter("titan", currentCell);	
