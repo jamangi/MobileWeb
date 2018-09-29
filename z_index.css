@@ -1,0 +1,6 @@
+/*article {background: none;}*/
+footer {position: relative; z-index:12;}
+.mapTile {z-index: 0;}
+/*.character {z-index: 1;}*/
+.cell {z-index:12; position:relative;}
+.gamebox {z-index:12;  position:relative;}

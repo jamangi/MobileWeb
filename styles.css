@@ -12,7 +12,7 @@ footer {height: 10%; background: var(--brown);}
 article {height: 100%; width: 100%; float:left;}
 aside {height: 0%; background: #233d4d; width: 0%; height: 0%; float: right; display:none;}
 
-.cell {border: 1px solid blue; float:left; position:relative;}
+.cell {border: 1px solid blue; float:left; }
 .character {
             position: absolute; 
             text-align: center; 
