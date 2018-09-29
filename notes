@@ -1,0 +1,40 @@
+Add movement
+Add auto scroll 
+
+Add objects 
+z-indicies
+barriers
+
+icons
+material bag
+
+files 
+use ajax to send collected file and recieve result
+	- could go to test container for now
+	- should go to container indexed by user id
+	- user id generated either:
+		- on entering the page (via IP)
+		- user,pw intro screen
+
+backend
+serve page via flask
+inject container tested files (using test container)
+potentially use socket to show other player's movements
+
+##########################################################################
+
+Movement and Auto Scroll
+
+Set titan's mapRow and mapCol
+Have titan move to calculated left and top (clientX clientY)
+ScrollX = titan.left - (gbwidth / 2)
+
+When to scroll
+
+after each cell path finder finds
+
+How to move
+
+pathfinder chooses a mapRow and mapCol and moves to it
+
+##########################################################################

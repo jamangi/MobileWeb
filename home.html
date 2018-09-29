@@ -15,7 +15,7 @@
 		div.character, div.tile, article#map {position: absolute;}
 		div.tile img {width: 100%; height: 100%;}
 
-		.character{z-index:1;}
+		.character{z-index:1; transition:}
 		#map {z-index: 0;}
 		footer div {font-size: 80%;}
 		
@@ -27,8 +27,8 @@
 		<article id="map">
 			
 		</article>
-		<div id="user" class="character">
-			<img src="images/titan/titanSleepRight.gif">
+		<div id="titan" class="character">
+			<img id="titanImg" src="images/titan/titanSleepRight.gif">
 		</div>
 	</article>
 	<footer id="footer">
@@ -40,6 +40,9 @@
 
 <script type="text/javascript">
 	window.onload = function() {
+		//////////////////////////////////////////////////////////////
+		//// Draw Map ////
+		//////////////////////////////////////////////////////////////
 		let map = document.getElementById("map");
 		let mapWidth = 1200, mapCols = 40;
 		let mapHeight = 1200, mapRows = 40;
@@ -83,9 +86,74 @@
 			mapSize.innerHTML = "map size: "+mapWidth+"px, "+mapHeight+"px - dimensions: "+mapRows +"c, "+mapCols+"c - cell size: "+mapCellSize+"px";
 			mouseCoordinates.innerHTML = "clientX: " + event.clientX + " - clientY: " + event.clientY;
 			mapCoordinates.innerHTML = "mapRow: " + mapRow + " - mapCol: " + mapCol;
+			clickedRow = mapRow, clickedCol = mapCol;
+			pathSearch();
 		}
 
 		document.addEventListener("click", printMousePos);
+		//////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////
+
+		//////////////////////////////////////////////////////////////
+		//// Movement and Scroll ////
+		//////////////////////////////////////////////////////////////
+		let myName = "titan";
+		let titan = document.getElementById(myName);
+		let mode = "Sleep", lastMode = "SleepRight";
+		let facing = "Right";
+		let pathSearch = simpleShortestPath;
+		let currentRow = 0, currentCol = 0;
+		let clickedRow = 0, clickedCol = 0;
+		let done = true;
+		let speed = 150;
+		const modes = ["Walk", "Run", "Sit", "Sleep"];
+		const dirs =  ["Up", "Down", "Left", "Right"];
+
+		function findLeft(col){return col * mapCellSize;}
+		function findTop(row){return row * mapCellSize;}
+		function stop() {done = true; mode = "Sit"; updateCharacter(myName, currentRow, currentCol);}
+		function updateCharacter (char, destRow, destCol){
+		    // let character = document.getElementById(char);
+		    let characterImg = document.getElementById(char + "Img");
+		    let destLeft = findLeft(destCol), destTop = findTop(destRow);
+		    titan.style.transition = "left "+speed+"ms linear, top "+speed+"ms linear"
+		    titan.style.top = destTop + "px";
+		    titan.style.left = destLeft + "px";
+		    if (lastMode !== (mode+facing))
+		        characterImg.setAttribute("src", "images/"+char+"/"+char+mode+facing+".gif")
+		    lastMode = mode+facing;
+		}
+		function simpleShortestPath() {
+		    let srcRow = currentRow, srcCol = currentCol;
+		    let destRow = clickedRow, destCol = clickedCol;
+		    console.log("current cell: "+currentRow+", "+currentCol);
+		    if (srcRow === destRow && srcCol === destCol){
+		        stop();
+		        return;
+		    }
+		    let hDist = Math.abs(srcCol - destCol);
+    		let vDist = Math.abs(srcRow - destRow);
+    		let dist = Math.max(hDist, vDist);
+    		if (srcCol < destCol) go("Right", hDist);
+    		else if (srcCol > destCol) go("Left", hDist);
+    		else if (srcRow < destRow) go("Down", vDist);
+    		else if (srcRow > destRow) go("Up", vDist);
+
+    		updateCharacter(myName, currentRow, currentCol);
+    		setTimeout(simpleShortestPath, speed);
+		}
+		function go(dir, dist) {
+			done = false;
+			switch(dir){
+				case "Right": currentCol += 1; break;
+				case "Left": currentCol -= 1; break;
+				case "Up": currentRow -= 1; break;
+				case "Down": currentRow += 1; break;
+			}
+			facing = dir;
+			mode = "Run";
+		}
 
 	}
 
