@@ -17,6 +17,7 @@
 
 		.character{z-index:1;}
 		#map {z-index: 0;}
+		footer div {font-size: 80%;}
 		
 	</style>
 </head>
@@ -30,14 +31,18 @@
 			<img src="images/titan/titanSleepRight.gif">
 		</div>
 	</article>
-	<footer id="footer"></footer>
+	<footer id="footer">
+		<div id="mapSize"> </div>
+		<div id="mouseCoordinates"></div>
+		<div id="mapCoordinates"></div>
+	</footer>
 </main>
 
 <script type="text/javascript">
 	window.onload = function() {
 		let map = document.getElementById("map");
-		let mapWidth = 1000, mapCols = 100;
-		let mapHeight = 1000, mapRows = 100;
+		let mapWidth = 1200, mapCols = 40;
+		let mapHeight = 1200, mapRows = 40;
 		map.style.width = mapWidth + "px", map.style.height = mapHeight + "px";
 		let mapCellSize = mapWidth / mapCols;
 		let gb = document.getElementById("gamebox");
@@ -50,18 +55,18 @@
 		let footer = document.getElementById("footer");
 
 		// draw map under doggy
-		for(let i = 0; i < mapRows; i++){
-			for (let j = 0; j < mapCols; j++){
-				layTile(i, j);
+		for(let i = 0; i < mapRows; i+=2){
+			for (let j = 0; j < mapCols; j+=2){
+				layTile(i, j, 2);
 			}
 
 		}
 
-		function layTile(row, col){
+		function layTile(row, col, size){
 			let tile = document.createElement("div");
 	    	tile.setAttribute("class", "tile");
-			tile.style.width = mapCellSize + "px";
-	    	tile.style.height = mapCellSize + "px";
+			tile.style.width = mapCellSize * size + "px";
+	    	tile.style.height = mapCellSize * size + "px";
 	    	tile.style.left = mapCellSize * col + "px";
 	    	tile.style.top = mapCellSize * row + "px";
 	    	let img = document.createElement("img");
@@ -71,7 +76,13 @@
 		}
 
 		function printMousePos(event) {
-		  footer.innerHTML = "clientX: " + event.clientX + " - clientY: " + event.clientY;
+			let mapSize = document.getElementById("mapSize");
+			let mouseCoordinates = document.getElementById("mouseCoordinates");
+			let mapCoordinates = document.getElementById("mapCoordinates");
+			let mapRow = Math.floor(event.clientY / mapCellSize), mapCol = Math.floor(event.clientX / mapCellSize);
+			mapSize.innerHTML = "map size: "+mapWidth+"px, "+mapHeight+"px - dimensions: "+mapRows +"c, "+mapCols+"c - cell size: "+mapCellSize+"px";
+			mouseCoordinates.innerHTML = "clientX: " + event.clientX + " - clientY: " + event.clientY;
+			mapCoordinates.innerHTML = "mapRow: " + mapRow + " - mapCol: " + mapCol;
 		}
 
 		document.addEventListener("click", printMousePos);
