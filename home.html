@@ -95,10 +95,9 @@
 		document.addEventListener("click", printMousePos);
 		//////////////////////////////////////////////////////////////
 		//////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////
 
 		//////////////////////////////////////////////////////////////
-		//// Movement and Scroll ////
+		//// Movement ////
 		//////////////////////////////////////////////////////////////
 		let myName = "titan";
 		let titan = document.getElementById(myName);
@@ -122,15 +121,13 @@
 		    titan.style.transition = "left "+speed+"ms linear, top "+speed+"ms linear"
 		    titan.style.top = destTop + clickedScrollTop + "px";
 		    titan.style.left = destLeft + clickedScrollLeft + "px";
-		    console.log("scrollleft: "+clickedScrollLeft)
 		    if (lastMode !== (mode+facing))
-		        characterImg.setAttribute("src", "images/"+char+"/"+char+mode+facing+".gif")
+		        characterImg.setAttribute("src", "images/"+char+"/"+char+mode+facing+".gif");
 		    lastMode = mode+facing;
 		}
 		function simpleShortestPath() {
 		    let srcRow = currentRow, srcCol = currentCol;
 		    let destRow = clickedRow, destCol = clickedCol;
-		    console.log("current cell: "+currentRow+", "+currentCol);
 		    if (srcRow === destRow && srcCol === destCol){
 		        stop();
 		        return;
@@ -157,6 +154,28 @@
 			facing = dir;
 			mode = "Run";
 		}
+		//////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////
+
+		//////////////////////////////////////////////////////////////
+		//// Auto Scroll ////
+		//////////////////////////////////////////////////////////////
+		let lastScrollTop = 0, lastScrollLeft = 0, scrollLeft = 0, scrollTop = 0;
+		function scroll(){
+			lastScrollLeft = scrollLeft, lastScrollTop = scrollTop;
+			scrollLeft = currentCol * mapCellSize;
+			scrollTop = currentRow * mapCellSize;
+			for (let i = lastScrollLeft; i < scrollLeft; i++)
+				setTimeout(function(){gb.scrollLeft = scrollLeft}, 200);
+			for (let i = lastScrollTop; i < scrollTop; i++)
+				setTimeout(function(){gb.scrollTop = scrollTop}, 200);
+			// gb.scrollTo(scrollLeft, scrollTop);
+			console.log("scrolling")
+		}
+		gb.addEventListener("click", scroll); // must be activated when either 
+													// character lands on resting place
+													// character lands on new cell
+													// also fix rush speed on scroll
 
 	}
 
