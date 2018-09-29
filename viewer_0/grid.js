@@ -1,5 +1,8 @@
 window.onload = function() {
 
+    function noscroll() {window.scrollTo( 0, 0 );}
+    window.addEventListener('scroll', noscroll);
+
     let gb = document.getElementById('gamebox');
     let footer = document.getElementById('footer');
     let material = document.getElementById('material');
@@ -97,26 +100,26 @@ window.onresize = function(event) {
 
 
     function createObject(folder, name, size, mapCell){
-    let obj = document.createElement("div");
-    obj.style.width = (size[0] * cellSize + debugBorder) + "px";
-    obj.style.height = (size[1] * cellSize + debugBorder) + "px";
-    obj.style.position = "absolute";
-    obj.setAttribute("class", "object mapTile");
-    obj.mapCell = mapCell;
-    setMapPosition(obj);
+        let obj = document.createElement("div");
+        obj.style.width = (size[0] * (cellSize + debugBorder)) + "px";
+        obj.style.height = (size[1] * (cellSize + debugBorder)) + "px";
+        obj.style.position = "absolute";
+        obj.setAttribute("class", "object mapTile");
+        obj.mapCell = mapCell;
+        setMapPosition(obj);
 
-    // let helper = document.createElement("div");
-    // helper.setAttribute("class", "helper")
-
-
-    let img = document.createElement("img");
-    img.setAttribute("src", "images/"+folder+"/"+name);
+        // let helper = document.createElement("div");
+        // helper.setAttribute("class", "helper")
 
 
-    obj.append(img);
-    // obj.append(helper);
-    map.append(obj);
-}
+        let img = document.createElement("img");
+        img.setAttribute("src", "images/"+folder+"/"+name);
+
+
+        obj.append(img);
+        // obj.append(helper);
+        map.append(obj);
+    }
 
 
 function setMapPosition(obj) {
@@ -178,6 +181,6 @@ function initMapTiles(name) {
 //////////// EXECUTION /////////////
 ////////////////////////////////////
 initGrid();
-initMapTiles("brownfloor_2_2.png");
+// initMapTiles("brownfloor_2_2.png");
 
 }
