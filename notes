@@ -36,5 +36,7 @@ after each cell path finder finds
 How to move
 
 pathfinder chooses a mapRow and mapCol and moves to it
+add scrollX and scrollY to clientX and clientY of mouse, to stay insync with viewport
+
 
 ##########################################################################

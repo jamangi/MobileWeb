@@ -49,6 +49,7 @@
 		map.style.width = mapWidth + "px", map.style.height = mapHeight + "px";
 		let mapCellSize = mapWidth / mapCols;
 		let gb = document.getElementById("gamebox");
+		let clickedScrollLeft, clickedScrollTop;
 		let gbWidth = gb.offsetWidth;
 		let gbRatioX = mapWidth / gbWidth; 
 		let gbHeight = gb.offsetHeight;
@@ -87,6 +88,7 @@
 			mouseCoordinates.innerHTML = "clientX: " + event.clientX + " - clientY: " + event.clientY;
 			mapCoordinates.innerHTML = "mapRow: " + mapRow + " - mapCol: " + mapCol;
 			clickedRow = mapRow, clickedCol = mapCol;
+			clickedScrollTop = gb.scrollTop, clickedScrollLeft = gb.scrollLeft;
 			pathSearch();
 		}
 
@@ -118,8 +120,9 @@
 		    let characterImg = document.getElementById(char + "Img");
 		    let destLeft = findLeft(destCol), destTop = findTop(destRow);
 		    titan.style.transition = "left "+speed+"ms linear, top "+speed+"ms linear"
-		    titan.style.top = destTop + "px";
-		    titan.style.left = destLeft + "px";
+		    titan.style.top = destTop + clickedScrollTop + "px";
+		    titan.style.left = destLeft + clickedScrollLeft + "px";
+		    console.log("scrollleft: "+clickedScrollLeft)
 		    if (lastMode !== (mode+facing))
 		        characterImg.setAttribute("src", "images/"+char+"/"+char+mode+facing+".gif")
 		    lastMode = mode+facing;
