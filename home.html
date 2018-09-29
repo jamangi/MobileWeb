@@ -30,7 +30,7 @@
 			<img src="images/titan/titanSleepRight.gif">
 		</div>
 	</article>
-	<footer></footer>
+	<footer id="footer"></footer>
 </main>
 
 <script type="text/javascript">
@@ -46,6 +46,8 @@
 		let gbHeight = gb.offsetHeight;
 		let gbRatioY = mapHeight / gbHeight;
 		let gbCols = Math.floor(mapCols * gbRatioX + 1), gbRows = Math.floor(mapRows * gbRatioY + 1);
+
+		let footer = document.getElementById("footer");
 
 		// draw map under doggy
 		for(let i = 0; i < mapRows; i++){
@@ -67,6 +69,12 @@
 	    	tile.append(img);
 	    	map.append(tile);
 		}
+
+		function printMousePos(event) {
+		  footer.innerHTML = "clientX: " + event.clientX + " - clientY: " + event.clientY;
+		}
+
+		document.addEventListener("click", printMousePos);
 
 	}
 
