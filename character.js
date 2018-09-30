@@ -1,6 +1,6 @@
 class Character {
 	constructor(id, imgFolder, imgName, imgCellWidth, imgCellHeight,
-	            row, col, pose, basePose, facing, baseSpeed, mode, map, search) {
+	            row, col, basePose, facing, baseSpeed, mode, map, search) {
 		this.uid = id; 
 		this.map = map;     
 		this.row = row; 
@@ -10,12 +10,12 @@ class Character {
 		this.facing = facing; 
 		this.mode = mode;
 		this.basePose = basePose;
-		this.pose = pose;
-		this.lastPose = pose;
+		this.pose = basePose;
+		this.lastPose = basePose;
 		this.baseSpeed = baseSpeed; 
 		this.speed = baseSpeed;
 		this.charDiv = undefined; 
-		this.charImgDiv = undefined;
+		this.charImg = undefined;
 		this.left = col * map.cellSize; 
 		this.top = row * map.cellSize;  
 		this.imgFolder = imgFolder;
@@ -28,25 +28,25 @@ class Character {
 		//create character object
 		let gb = document.getElementById("gamebox"); 
 		let charDiv = document.createElement("div"); this.charDiv = charDiv;
-		let img = document.createElement("img"); this.charImgDiv = img;
+		let img = document.createElement("img"); this.charImg = img;
 		charDiv.append(img); gb.append(charDiv)
 		charDiv.setAttribute("id", this.uid); charDiv.setAttribute("class", "character");
-		charDiv.style.left = this.left + "px"; charDiv.style.top = this.top + "px";
-		charDiv.style.height = this.imgCellHeight * this.map.cellSize;
-		charDiv.style.width = this.imgCellWidth * this.map.cellSize;
-		charDiv.style["z-index"] = this.col;
+		charDiv.style.left = this.left + "px"; 
+		charDiv.style.top = this.top + "px";
+		charDiv.style.height = this.imgCellHeight * this.map.cellSize + "px";
+		charDiv.style.width = this.imgCellWidth * this.map.cellSize + "px";
+		charDiv.style["z-index"] = this.row;
 		charDiv.style.transition = "left "+this.speed+"ms linear, top "+this.speed+"ms linear";
-		img.setAttribute("src", this.imgFolder+"/"+this.imgName+this.pose+this.facing+".gif"); 
+		img.setAttribute("src", this.imgFolder+this.imgName+this.pose+".gif"); 
 		img.setAttribute("id", this.imgId);
 
 	}
 
 	go(row, col){
 		this.selectedRow = row, this.selectedCol = col;
-		if (this.done){
+		if (this.done)
 			this.done = false;
-			this.pathSearch();
-		}
+		this.pathSearch();
 	}
 
 	update(destRow, destCol){
@@ -56,13 +56,13 @@ class Character {
 		// might let characters have their own update functions later
 		if (this.col < destCol) this.facing = "Right";
 		else if (this.col > destCol) this.facing = "Left";
-		else if (this.row < destRow) this.facing = "Up";
-		else if (this.row > destRow) this.facing = "Down";
-		else done = true;
+		else if (this.row > destRow) this.facing = "Up";
+		else if (this.row < destRow) this.facing = "Down";
+		else this.done = true;
 
 		// 
 		this.lastPose = this.pose;
-		this.pose = this.mode;
+		this.pose = this.mode + this.facing;
 		if (this.mode === "Run") this.speed = this.baseSpeed / 2;
 		else this.speed = this.baseSpeed;
 
@@ -86,9 +86,10 @@ class Character {
 		this.charDiv.style.transition = "left "+this.speed+"ms linear, top "+this.speed+"ms linear";
 		this.charDiv.style.left = this.left + "px";
 		this.charDiv.style.top = this.top + "px";
-		let src = this.imgFolder+this.imgName+this.pose+this.facing+".gif"
-		if (this.lastPose !== this.pose)
-			this.charImgDiv.setAttribute("src", src);
+		this.charDiv.style["z-index"] = this.row;
+		let src = this.imgFolder+this.imgName+this.pose+".gif"
+		if (this.lastPose !== (this.pose + this.facing))
+			this.charImg.setAttribute("src", src);
 	}
 
 }

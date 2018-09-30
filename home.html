@@ -14,7 +14,7 @@
 		footer {height: 10%; width: 100%; background:var(--blue); font-size: 60%;}
 
 		html, body, main, article, footer {position: relative; z-index: -1;}
-		.tile,.character {position: absolute;}
+		.tile, .character {position: absolute;}
 	</style>
 	<script type="text/javascript" src="character.js"></script>
 </head>
@@ -31,12 +31,13 @@
 		window.onload = function() {
 			// id, imgFolder, imgName, imgCellWidth, imgCellHeight,
 	            // row, col, pose, facing, baseSpeed, mode, map, search
-			let id = "user", imgFolder = "images/titan", imgName = "titan",
-				imgCellWidth = 1, imgCellHeight = 1, row=0, col=0, pose="Sleep", basePose = "Sleep",
-				facing="Right", baseSpeed=150, mode="Run", 
+			let id = "user", imgFolder = "images/titan/", imgName = "titan",
+				imgCellWidth = 1, imgCellHeight = 1, row=0, col=0, basePose = "SleepRight",
+				facing="Right", baseSpeed=300, mode="Walk", 
 				map = {mapHeight: 1200, mapWidth: 1200, mapRows: 40, mapCols: 40,
-					cellSize: this.mapWidth / this.mapCols},
+					cellSize: 1200 / 40},
 				search = function(){
+					if (this instanceof Window) return;
 					if (this.selectedRow > this.row)      this.update(this.row + 1, this.col);
 					else if (this.selectedRow < this.row) this.update(this.row - 1, this.col);
 					else if (this.selectedCol > this.col) this.update(this.row, this.col + 1);
@@ -46,7 +47,19 @@
 					setInterval(search(), spd);
 				}
 			let myChar = new Character(id, imgFolder, imgName, imgCellWidth, imgCellHeight,
-	            				       row, col, pose, basePose, facing, baseSpeed, mode, map, search);
+	            				       row, col, basePose, facing, baseSpeed, mode, map, search);
+
+			function loiter(){
+				let inc = 1;
+				if (myChar.row < 5 && myChar.facing === "Down") inc = 1;
+				else if (myChar.row == 5 && myChar.facing === "Down") inc = -1;
+				else if (myChar.row > 0 && myChar.facing === "Up") inc = -1;
+				else if (myChar.row == 0 && myChar.facing === "Up") inc = 1;
+				
+				myChar.go(myChar.row + inc, myChar.col);
+			}
+
+			setInterval(loiter, 2000);
 		}
 	</script>
 </body>
