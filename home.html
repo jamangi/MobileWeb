@@ -15,7 +15,7 @@
 		div.character, div.tile, article#map {position: absolute;}
 		div.tile img {width: 100%; height: 100%;}
 
-		.character{z-index:1; transition:}
+		.character{z-index:1; transition: left 150ms linear, top 150ms linear;}
 		#map {z-index: 0;}
 		footer div {font-size: 80%;}
 		
@@ -118,7 +118,7 @@
 		    // let character = document.getElementById(char);
 		    let characterImg = document.getElementById(char + "Img");
 		    let destLeft = findLeft(destCol), destTop = findTop(destRow);
-		    titan.style.transition = "left "+speed+"ms linear, top "+speed+"ms linear"
+		    // titan.style.transition = "left "+speed+"ms linear, top "+speed+"ms linear"
 		    titan.style.top = destTop + clickedScrollTop + "px";
 		    titan.style.left = destLeft + clickedScrollLeft + "px";
 		    if (lastMode !== (mode+facing))
