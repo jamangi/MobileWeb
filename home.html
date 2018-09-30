@@ -2,183 +2,52 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>viewer.1.0</title>
-	<style>
+	<title>viewer 2.0</title>
+	<style type="text/css">
 		* {margin: 0; padding: 0;}
 		:root { --purple: #4E4C67; --rose:#985F6F; --pink:#B4869F;
 			    --blue:#A6B1E1; --white:#DCD6F7;}
 		html, body, main {width: 100%; height: 100%;}
-		article#gamebox {height: 90%; width: 100%; background:var(--white); 
-						 overflow-x: scroll; overflow-y: scroll; position:relative;}
-		footer {height: 10%; width: 100%; background:var(--blue); position:relative;}
+		main {background: var(--white);}
+		article#gamebox {height: 90%; width: 100%; background:var(--rose); 
+						 overflow-x: scroll; overflow-y: scroll;}
+		footer {height: 10%; width: 100%; background:var(--blue); font-size: 60%;}
 
-		div.character, div.tile, article#map {position: absolute;}
-		div.tile img {width: 100%; height: 100%;}
-
-		.character{z-index:1; transition: left 150ms linear, top 150ms linear;}
-		#map {z-index: 0;}
-		footer div {font-size: 80%;}
-		
+		html, body, main, article, footer {position: relative; z-index: -1;}
+		.tile,.character {position: absolute;}
 	</style>
+	<script type="text/javascript" src="character.js"></script>
 </head>
 <body>
-<main>
-	<article id="gamebox">
-		<article id="map">
-			
+	<main>
+		<article id="gamebox">
+			<article id="map">
+				
+			</article>
 		</article>
-		<div id="titan" class="character">
-			<img id="titanImg" src="images/titan/titanSleepRight.gif">
-		</div>
-	</article>
-	<footer id="footer">
-		<div id="mapSize"> </div>
-		<div id="mouseCoordinates"></div>
-		<div id="mapCoordinates"></div>
-	</footer>
-</main>
-
-<script type="text/javascript">
-	window.onload = function() {
-		//////////////////////////////////////////////////////////////
-		//// Draw Map ////
-		//////////////////////////////////////////////////////////////
-		let map = document.getElementById("map");
-		let mapWidth = 1200, mapCols = 40;
-		let mapHeight = 1200, mapRows = 40;
-		map.style.width = mapWidth + "px", map.style.height = mapHeight + "px";
-		let mapCellSize = mapWidth / mapCols;
-		let gb = document.getElementById("gamebox");
-		let clickedScrollLeft, clickedScrollTop;
-		let gbWidth = gb.offsetWidth;
-		let gbRatioX = mapWidth / gbWidth; 
-		let gbHeight = gb.offsetHeight;
-		let gbRatioY = mapHeight / gbHeight;
-		let gbCols = Math.floor(mapCols * gbRatioX + 1), gbRows = Math.floor(mapRows * gbRatioY + 1);
-
-		let footer = document.getElementById("footer");
-
-		// draw map under doggy
-		for(let i = 0; i < mapRows; i+=2){
-			for (let j = 0; j < mapCols; j+=2){
-				layTile(i, j, 2);
-			}
-
+		<footer></footer>
+	</main>
+	<script id="characterTest" type="text/javascript">
+		window.onload = function() {
+			// id, imgFolder, imgName, imgCellWidth, imgCellHeight,
+	            // row, col, pose, facing, baseSpeed, mode, map, search
+			let id = "user", imgFolder = "images/titan", imgName = "titan",
+				imgCellWidth = 1, imgCellHeight = 1, row=0, col=0, pose="Sleep", basePose = "Sleep",
+				facing="Right", baseSpeed=150, mode="Run", 
+				map = {mapHeight: 1200, mapWidth: 1200, mapRows: 40, mapCols: 40,
+					cellSize: this.mapWidth / this.mapCols},
+				search = function(){
+					if (this.selectedRow > this.row)      this.update(this.row + 1, this.col);
+					else if (this.selectedRow < this.row) this.update(this.row - 1, this.col);
+					else if (this.selectedCol > this.col) this.update(this.row, this.col + 1);
+					else if (this.selectedCol < this.col) this.update(this.row, this.col - 1);
+					else {this.update(this.row, this.col); return;}
+					let spd = this.speed;
+					setInterval(search(), spd);
+				}
+			let myChar = new Character(id, imgFolder, imgName, imgCellWidth, imgCellHeight,
+	            				       row, col, pose, basePose, facing, baseSpeed, mode, map, search);
 		}
-
-		function layTile(row, col, size){
-			let tile = document.createElement("div");
-	    	tile.setAttribute("class", "tile");
-			tile.style.width = mapCellSize * size + "px";
-	    	tile.style.height = mapCellSize * size + "px";
-	    	tile.style.left = mapCellSize * col + "px";
-	    	tile.style.top = mapCellSize * row + "px";
-	    	let img = document.createElement("img");
-	    	img.setAttribute("src", "images/map/floor/brownfloor_2_2.png");
-	    	tile.append(img);
-	    	map.append(tile);
-		}
-
-		function printMousePos(event) {
-			let mapSize = document.getElementById("mapSize");
-			let mouseCoordinates = document.getElementById("mouseCoordinates");
-			let mapCoordinates = document.getElementById("mapCoordinates");
-			let mapRow = Math.floor(event.clientY / mapCellSize), mapCol = Math.floor(event.clientX / mapCellSize);
-			mapSize.innerHTML = "map size: "+mapWidth+"px, "+mapHeight+"px - dimensions: "+mapRows +"c, "+mapCols+"c - cell size: "+mapCellSize+"px";
-			mouseCoordinates.innerHTML = "clientX: " + event.clientX + " - clientY: " + event.clientY;
-			mapCoordinates.innerHTML = "mapRow: " + mapRow + " - mapCol: " + mapCol;
-			clickedRow = mapRow, clickedCol = mapCol;
-			clickedScrollTop = gb.scrollTop, clickedScrollLeft = gb.scrollLeft;
-			pathSearch();
-		}
-
-		document.addEventListener("click", printMousePos);
-		//////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////
-
-		//////////////////////////////////////////////////////////////
-		//// Movement ////
-		//////////////////////////////////////////////////////////////
-		let myName = "titan";
-		let titan = document.getElementById(myName);
-		let mode = "Sleep", lastMode = "SleepRight";
-		let facing = "Right";
-		let pathSearch = simpleShortestPath;
-		let currentRow = 0, currentCol = 0;
-		let clickedRow = 0, clickedCol = 0;
-		let done = true;
-		let speed = 150;
-		const modes = ["Walk", "Run", "Sit", "Sleep"];
-		const dirs =  ["Up", "Down", "Left", "Right"];
-
-		function findLeft(col){return col * mapCellSize;}
-		function findTop(row){return row * mapCellSize;}
-		function stop() {done = true; mode = "Sit"; updateCharacter(myName, currentRow, currentCol);}
-		function updateCharacter (char, destRow, destCol){
-		    // let character = document.getElementById(char);
-		    let characterImg = document.getElementById(char + "Img");
-		    let destLeft = findLeft(destCol), destTop = findTop(destRow);
-		    // titan.style.transition = "left "+speed+"ms linear, top "+speed+"ms linear"
-		    titan.style.top = destTop + clickedScrollTop + "px";
-		    titan.style.left = destLeft + clickedScrollLeft + "px";
-		    if (lastMode !== (mode+facing))
-		        characterImg.setAttribute("src", "images/"+char+"/"+char+mode+facing+".gif");
-		    lastMode = mode+facing;
-		}
-		function simpleShortestPath() {
-		    let srcRow = currentRow, srcCol = currentCol;
-		    let destRow = clickedRow, destCol = clickedCol;
-		    if (srcRow === destRow && srcCol === destCol){
-		        stop();
-		        return;
-		    }
-		    let hDist = Math.abs(srcCol - destCol);
-    		let vDist = Math.abs(srcRow - destRow);
-    		let dist = Math.max(hDist, vDist);
-    		if (srcCol < destCol) go("Right", hDist);
-    		else if (srcCol > destCol) go("Left", hDist);
-    		else if (srcRow < destRow) go("Down", vDist);
-    		else if (srcRow > destRow) go("Up", vDist);
-
-    		updateCharacter(myName, currentRow, currentCol);
-    		setTimeout(simpleShortestPath, speed);
-		}
-		function go(dir, dist) {
-			done = false;
-			switch(dir){
-				case "Right": currentCol += 1; break;
-				case "Left": currentCol -= 1; break;
-				case "Up": currentRow -= 1; break;
-				case "Down": currentRow += 1; break;
-			}
-			facing = dir;
-			mode = "Run";
-		}
-		//////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////
-
-		//////////////////////////////////////////////////////////////
-		//// Auto Scroll ////
-		//////////////////////////////////////////////////////////////
-		let lastScrollTop = 0, lastScrollLeft = 0, scrollLeft = 0, scrollTop = 0;
-		function scroll(){
-			lastScrollLeft = scrollLeft, lastScrollTop = scrollTop;
-			scrollLeft = currentCol * mapCellSize;
-			scrollTop = currentRow * mapCellSize;
-			for (let i = lastScrollLeft; i < scrollLeft; i++)
-				setTimeout(function(){gb.scrollLeft = scrollLeft}, 200);
-			for (let i = lastScrollTop; i < scrollTop; i++)
-				setTimeout(function(){gb.scrollTop = scrollTop}, 200);
-			// gb.scrollTo(scrollLeft, scrollTop);
-			console.log("scrolling")
-		}
-		gb.addEventListener("click", scroll); // must be activated when either 
-													// character lands on resting place
-													// character lands on new cell
-													// also fix rush speed on scroll
-
-	}
-
-</script>
+	</script>
 </body>
 </html>
