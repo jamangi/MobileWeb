@@ -10,8 +10,8 @@ class Character {
 		this.facing = facing; 
 		this.mode = mode;
 		this.basePose = basePose;
-		this.pose = basePose;
-		this.lastPose = basePose;
+		this.pose = basePose + facing;
+		this.lastPose = this.pose;
 		this.baseSpeed = baseSpeed; 
 		this.speed = baseSpeed;
 		this.charDiv = undefined; 
@@ -44,9 +44,10 @@ class Character {
 
 	go(row, col){
 		this.selectedRow = row, this.selectedCol = col;
-		if (this.done)
+		if (this.done){
 			this.done = false;
-		this.pathSearch();
+			this.pathSearch();
+		}
 	}
 
 	update(destRow, destCol){
@@ -75,7 +76,7 @@ class Character {
 				case "Down": this.row += 1; break;
 			}	
 
-		} else {this.pose = this.basePose;}
+		} else this.pose = this.basePose + this.facing
 		// reposition
 		this.reposition();
 	}
@@ -88,7 +89,7 @@ class Character {
 		this.charDiv.style.top = this.top + "px";
 		this.charDiv.style["z-index"] = this.row;
 		let src = this.imgFolder+this.imgName+this.pose+".gif"
-		if (this.lastPose !== (this.pose + this.facing))
+		if (this.lastPose !== this.pose + this.facing)
 			this.charImg.setAttribute("src", src);
 	}
 
