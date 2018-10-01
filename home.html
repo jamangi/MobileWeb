@@ -37,14 +37,19 @@
 					   mapCols: 40,
 					   cellSize: 1200 / 40};
 
-			let titans = [];
-			let total = 25;
-			let range = 20;
-			for (let i = 0; i < total; i++){
-				let titan = makeTitan(i, 0, map);
-				setInterval(makeSimpleLoiter("col", titan, range), 3000);
-				titans.push(titan);
+			function makeLoiterer(row, col, axis, rangeLow, rangeHigh){
+				function loiterTitan() {
+					setInterval(
+						makeSimpleLoiter(axis, makeTitan(row, col, map), rangeLow, rangeHigh), 
+					3000);
+				}
+				return loiterTitan;
 			}
+			let loiter1 = {row: 5, col: 0, axis:"col", rangeLow:0, rangeHigh:5}
+			let loiter2 = {row: 10, col: 5, axis:"row", rangeLow:5, rangeHigh:10};
+			makeLoiterer(loiter1.row, loiter1.col, loiter1.axis, loiter1.rangeLow, loiter1.rangeHigh)();
+			makeLoiterer(loiter2.row, loiter2.col, loiter2.axis, loiter2.rangeLow, loiter2.rangeHigh)();
+			// setTimeout(makeLoiterer(13), 6000);
 			
 		}
 	</script>
