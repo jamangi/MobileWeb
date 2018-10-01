@@ -15,8 +15,11 @@
 
 		html, body, main, article, footer {position: relative; z-index: -1;}
 		.tile, .character {position: absolute;}
+		.character img {min-width: 70%; min-height: 70%; max-width: 100%; max-height: 100%;}
+		.tile img {width: 100%; height: 100%;}
 	</style>
 	<script type="text/javascript" src="character.js"></script>
+	<script type="text/javascript" src="map.js"></script>
 </head>
 <body>
 	<main>
@@ -31,24 +34,17 @@
 		window.onload = function() {
 			// id, imgFolder, imgName, imgCellWidth, imgCellHeight,
 	            // row, col, pose, facing, baseSpeed, mode, map, search
-	        let map = {mapHeight: 1200, 
+	        let m = {mapHeight: 1200, 
 					   mapWidth: 1200, 
 					   mapRows: 40, 
 					   mapCols: 40,
-					   cellSize: 1200 / 40};
+					   cellSize: 1200 / 40,
+					   floorTileImg: "images/map/floor/brownfloor_2_2.png"};
 
-			function makeLoiterer(l, frequency, wait){
-				let row = l.row, col = l.col, axis = l.axis, rangeLow = l.rangeLow, rangeHigh = l.rangeHigh;
-				function loiterTitan() {
-					let titan = makeTitan(row, col, map);
-					function waitTime(){
-						setInterval(makeSimpleLoiter(axis, titan, rangeLow, rangeHigh), 
-						frequency);
-					}
-					setTimeout(waitTime, wait);
-				}
-				return loiterTitan;
-			}
+			let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg)
+			map.setTiles();
+
+
 			let loiterRight = {row: 5, col: 6, axis:"col", rangeLow:6, rangeHigh:7};
 			let loiterLeft = {row: 5, col: 4, axis:"col", rangeLow:3, rangeHigh:4}
 			let loiterUp = {row: 4, col: 5, axis:"row", rangeLow:3, rangeHigh:4};
@@ -56,10 +52,10 @@
 			let rotateDelay = 2000;
 			// makeLoiterer(loiterLeft)(); makeLoiterer(loiterRight)();
 			// makeLoiterer(loiterUp)(); makeLoiterer(loiterDown)();
-			makeLoiterer(loiterLeft, rotateDelay, rotateDelay * 0)();
-			makeLoiterer(loiterUp, rotateDelay, rotateDelay * 1)();
-			makeLoiterer(loiterRight, rotateDelay, rotateDelay * 2)();
-			makeLoiterer(loiterDown, rotateDelay, rotateDelay * 3)();
+			makeLoiterer(loiterLeft, rotateDelay, rotateDelay * 0, map)();
+			makeLoiterer(loiterUp, rotateDelay, rotateDelay * 1, map)();
+			makeLoiterer(loiterRight, rotateDelay, rotateDelay * 2, map)();
+			makeLoiterer(loiterDown, rotateDelay, rotateDelay * 3, map)();
 			
 		}
 	</script>

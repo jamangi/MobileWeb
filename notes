@@ -25,18 +25,10 @@ potentially use socket to show other player's movements
 
 Movement and Auto Scroll
 
-Set titan's mapRow and mapCol
-Have titan move to calculated left and top (clientX clientY)
-ScrollX = titan.left - (gbwidth / 2)
-
-When to scroll
-
-after each cell path finder finds
-
-How to move
-
-pathfinder chooses a mapRow and mapCol and moves to it
-add scrollX and scrollY to clientX and clientY of mouse, to stay insync with viewport
 
 
 ##########################################################################
+
+Map
+
+Map image was messed up because I forgot to add "px" when setting height and width

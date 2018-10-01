@@ -29,6 +29,7 @@ class Character {
 		let gb = document.getElementById("gamebox"); 
 		let charDiv = document.createElement("div"); this.charDiv = charDiv;
 		let img = document.createElement("img"); this.charImg = img;
+		charDiv.character = this;
 		charDiv.append(img); gb.append(charDiv)
 		charDiv.setAttribute("id", this.uid); charDiv.setAttribute("class", "character");
 		charDiv.style.left = this.left + "px"; 
@@ -145,4 +146,18 @@ function makeSimpleLoiter (axis, myChar, rangeLow, rangeHigh) {
 	}
 
 	return loiter;
+}
+
+function makeLoiterer(l, frequency, wait, map){ 
+	//currently only makes titans
+	let row = l.row, col = l.col, axis = l.axis, rangeLow = l.rangeLow, rangeHigh = l.rangeHigh;
+	function loiterTitan() {
+		let titan = makeTitan(row, col, map);
+		function waitTime(){
+			setInterval(makeSimpleLoiter(axis, titan, rangeLow, rangeHigh), 
+			frequency);
+		}
+		setTimeout(waitTime, wait);
+	}
+	return loiterTitan;
 }
