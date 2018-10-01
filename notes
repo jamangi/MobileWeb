@@ -32,3 +32,10 @@ Movement and Auto Scroll
 Map
 
 Map image was messed up because I forgot to add "px" when setting height and width
+
+imgObj not showing up on map
+	- fixed by setting tile z-index to -1
+imgObj not moving from 0,0 
+	- set position to absolute
+imgObj not infront of titan
+	- remove z-index -1 from map, and apply only to tiles

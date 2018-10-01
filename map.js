@@ -21,17 +21,27 @@ class Map {
 		setValues(tile, col * this.cellSize, row * this.cellSize, 
 				  this.cellSize * size, this.cellSize * size);
 		tile.setAttribute("class", "tile"); 
+
 		let tileImg = document.createElement("img"); 
 		tileImg.setAttribute("src", this.floorTileImg);
 		tile.append(tileImg);
+
 		this.mapDiv.append(tile);
 	}
 
-	makeObject(imgObj, row, col){
+	addObject(imgObj, row, col){
 		let imgDiv = document.createElement("div");
 		setValues(imgDiv, this.cellSize * col, this.cellSize * row, 
 				  this.cellSize * imgObj.objHeight, 
 				  this.cellSize * imgObj.objHeight);
+		imgDiv.setAttribute("class", "object");
+		imgDiv.style['z-index'] = row+1;
+
+		let img = document.createElement("img");
+		img.setAttribute("src", imgObj.img);
+		imgDiv.append(img);
+
+		this.mapDiv.append(imgDiv);
 	}
 }
 
