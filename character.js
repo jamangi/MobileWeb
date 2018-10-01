@@ -94,3 +94,55 @@ class Character {
 	}
 
 }
+
+function makeSimpleSearch(char){
+	function search(){
+		if (char.selectedRow > char.row)      char.update(char.row + 1, char.col);
+		else if (char.selectedRow < char.row) char.update(char.row - 1, char.col);
+		else if (char.selectedCol > char.col) char.update(char.row, char.col + 1);
+		else if (char.selectedCol < char.col) char.update(char.row, char.col - 1);
+		else {char.update(char.row, char.col); return;}
+		setTimeout(char.pathSearch, char.speed);
+	}
+	return search;
+}
+
+function makeTitan(row, col, map){
+	if (this.titanCount)
+		this.titanCount += 1;
+	else
+		this.titanCount = 1;
+
+	let id="titan"+this.titanCount,
+	imgFolder="images/titan/", 
+	imgName="titan",
+	imgCellWidth = 1, 
+	imgCellHeight = 1,  
+	baseSpeed=300, 
+	basePose="Sit",
+	facing="Right", 
+	mode="Walk";
+	let myChar = new Character(id, imgFolder, imgName, imgCellWidth, imgCellHeight,
+    				           row, col, basePose, facing, baseSpeed, mode, map, null);
+	myChar.pathSearch = makeSimpleSearch(myChar);
+
+	return myChar;
+}
+
+function makeSimpleLoiter (axis, myChar) {
+	function loiter(){
+		let data = {row: {dir1: "Down", dir2: "Up"}, col:{dir1: "Right", dir2:"Left"}}
+		let inc = 1;
+		if (myChar[axis] < 6 && myChar.facing === data[axis].dir1) inc = inc;
+		else if (myChar[axis] >= 6 && myChar.facing === data[axis].dir1) inc = -inc;
+		else if (myChar[axis] > 0 && myChar.facing === data[axis].dir2) inc = -inc;
+		else if (myChar[axis] <= 0 && myChar.facing === data[axis].dir2) inc = inc;
+		
+		if (axis === "row")
+			myChar.go(myChar.row + inc, myChar.col);
+		else
+			myChar.go(myChar.row, myChar.col + inc);
+	}
+
+	return loiter;
+}
