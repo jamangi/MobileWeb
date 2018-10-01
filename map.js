@@ -32,7 +32,7 @@ class Map {
 	addObject(imgObj, row, col){
 		let imgDiv = document.createElement("div");
 		setValues(imgDiv, this.cellSize * col, this.cellSize * row, 
-				  this.cellSize * imgObj.objHeight, 
+				  this.cellSize * imgObj.objWidth, 
 				  this.cellSize * imgObj.objHeight);
 		imgDiv.setAttribute("class", "object");
 		imgDiv.style['z-index'] = row+1;

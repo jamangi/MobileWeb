@@ -55,7 +55,8 @@
 
 			let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg)
 			map.setTiles();
-			
+			map.addObject(cabinetTop, 5, 2);
+			map.addObject(cabinetBot, 6, 2);
 
 
 
@@ -72,8 +73,7 @@
 			makeLoiterer(loiterRight, rotateDelay, rotateDelay * 2, map)();
 			makeLoiterer(loiterDown, rotateDelay, rotateDelay * 3, map)();
 
-			map.addObject(cabinetTop, 5, 4);
-			map.addObject(cabinetBot, 6, 4);
+			
 			
 		}
 	</script>
