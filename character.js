@@ -129,12 +129,12 @@ function makeTitan(row, col, map){
 	return myChar;
 }
 
-function makeSimpleLoiter (axis, myChar) {
+function makeSimpleLoiter (axis, myChar, range) {
 	function loiter(){
 		let data = {row: {dir1: "Down", dir2: "Up"}, col:{dir1: "Right", dir2:"Left"}}
 		let inc = 1;
-		if (myChar[axis] < 6 && myChar.facing === data[axis].dir1) inc = inc;
-		else if (myChar[axis] >= 6 && myChar.facing === data[axis].dir1) inc = -inc;
+		if (myChar[axis] < range && myChar.facing === data[axis].dir1) inc = inc;
+		else if (myChar[axis] >= range && myChar.facing === data[axis].dir1) inc = -inc;
 		else if (myChar[axis] > 0 && myChar.facing === data[axis].dir2) inc = -inc;
 		else if (myChar[axis] <= 0 && myChar.facing === data[axis].dir2) inc = inc;
 		
