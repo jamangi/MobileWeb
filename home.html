@@ -55,11 +55,10 @@
 			let cabinetBot = new ImageObject(cbot.objWidth, cbot.objHeight, cbot.barrierList, cbot.img);
 
 			let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg)
-			map.setTiles();
-			map.addObject(cabinetTop, 4, 2);
-			map.addObject(cabinetBot, 5, 2);
-
-
+			// map.setTiles();
+			// map.addObject(cabinetTop, 4, 2);
+			// map.addObject(cabinetBot, 5, 2);
+			makeSeaHorse();
 
 
 			let loiterRight = {row: 5, col: 6, axis:"col", rangeLow:6, rangeHigh:7};

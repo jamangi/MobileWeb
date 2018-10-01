@@ -61,14 +61,8 @@ class Character {
 		else if (this.row < destRow) this.facing = "Down";
 		else this.done = true;
 
-		if (this.map.barrierList[destRow+'-'+destCol]) {
+		if (this.map.barrierList[destRow+'-'+destCol]) 
 			this.done = true;
-			console.log(this.map.barrierList[destRow+'-'+destCol]);
-		}
-		else{
-			console.log(this.map.barrierList)
-			console.log("destRow: "+destRow + ' - '+destCol);
-		}
 
 
 		// 

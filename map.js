@@ -57,3 +57,38 @@ class ImageObject{
 		this.img = img;
 	}
 }
+
+function makeSeaHorse() {
+	let m = {mapHeight: 1200, 
+			 mapWidth: 1200, 
+			 mapRows: 40, 
+			 mapCols: 40,
+			 cellSize: 1200 / 40,
+			 floorTileImg: "images/map/floor/brownfloor_2_2.png"};
+	let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg);
+	map.setTiles();
+
+	let box = {objWidth: 1, objHeight: 1, barrierList: [0,0], 
+			   img: "images/map/material/box.png"};
+	
+	let u = 'up', d = 'down', r = 'right', l = 'left', 
+		ul = 'upleft', ur = 'upright', dl = "downleft", dr = "downright";
+	let drawlist = [r,r,r,u,u,r,ur,u,r,r,d,d,l,d,d,r,d,d,r];
+
+	let cursor = [3, 8];
+	for (let stroke of drawlist){
+		map.addObject(box, cursor[0], cursor[1]);
+		switch(stroke){
+			case u: cursor[0] -= 1; break;
+			case d: cursor[0] += 1; break;
+			case r: cursor[1] += 1; break;
+			case l: cursor[1] += 1; break;
+			case ur: cursor[0] -= 1; cursor[1] += 1;
+			case ul: cursor[0] -= 1; cursor[1] -= 1;
+			case dr: cursor[0] += 1; cursor[1] += 1;
+			case dl: cursor[0] += 1; cursor[1] -= 1;
+		}
+		
+	}
+
+}
