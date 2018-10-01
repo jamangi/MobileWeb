@@ -5,6 +5,7 @@ class Map {
 		this.mapRows = mapRows;
 		this.mapCols = mapCols;
 		this.cellSize = mapWidth / mapCols;
+		this.barrierList = {}
 		this.floorTileImg = floorTileImg;
 		this.mapDiv = document.getElementById("map");
 		this.mapDiv.map = this;
@@ -42,6 +43,9 @@ class Map {
 		imgDiv.append(img);
 
 		this.mapDiv.append(imgDiv);
+
+		for (let barrier of imgObj.barrierList)
+			this.barrierList[(barrier[0]+row) + "-" + (barrier[1]+col)] = true;
 	}
 }
 

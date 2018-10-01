@@ -18,7 +18,7 @@
 		.tile { z-index: -1;}
 		.character img {min-width: 70%; min-height: 70%; max-width: 100%; max-height: 100%;}
 		.tile img, .object img {width: 100%; height: 100%;}
-		.object {box-shadow: 3px -20px 100px 0px black;}
+		.object {box-shadow: 3px -20px 120px 0px black;}
 
 
 	</style>
@@ -48,7 +48,7 @@
 
 			let ctop = {objWidth: 2, objHeight: 1, barrierList: [], 
 					 img: "images/map/material/cabinet_top.png"}
-			let cbot = {objWidth: 2, objHeight: 1, barrierList: [], 
+			let cbot = {objWidth: 2, objHeight: 1, barrierList: [[0,0],[0,1]], 
 					 img: "images/map/material/cabinet_bottom.png"}
 
 			let cabinetTop = new ImageObject(ctop.objWidth, ctop.objHeight, ctop.barrierList, ctop.img);
@@ -56,15 +56,15 @@
 
 			let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg)
 			map.setTiles();
-			map.addObject(cabinetTop, 5, 2);
-			map.addObject(cabinetBot, 6, 2);
+			map.addObject(cabinetTop, 4, 2);
+			map.addObject(cabinetBot, 5, 2);
 
 
 
 
 			let loiterRight = {row: 5, col: 6, axis:"col", rangeLow:6, rangeHigh:7};
 			let loiterLeft = {row: 5, col: 4, axis:"col", rangeLow:3, rangeHigh:4}
-			let loiterUp = {row: 4, col: 5, axis:"row", rangeLow:3, rangeHigh:4};
+			let loiterUp = {row: 4, col: 3, axis:"row", rangeLow:3, rangeHigh:4};
 			let loiterDown = {row: 6, col: 5, axis:"row", rangeLow:6, rangeHigh:7};
 			let rotateDelay = 2000;
 			// makeLoiterer(loiterLeft)(); makeLoiterer(loiterRight)();

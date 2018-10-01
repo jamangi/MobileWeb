@@ -61,6 +61,16 @@ class Character {
 		else if (this.row < destRow) this.facing = "Down";
 		else this.done = true;
 
+		if (this.map.barrierList[destRow+'-'+destCol]) {
+			this.done = true;
+			console.log(this.map.barrierList[destRow+'-'+destCol]);
+		}
+		else{
+			console.log(this.map.barrierList)
+			console.log("destRow: "+destRow + ' - '+destCol);
+		}
+
+
 		// 
 		this.lastPose = this.pose;
 		this.pose = this.mode + this.facing;
@@ -97,6 +107,7 @@ class Character {
 
 function makeSimpleSearch(char){
 	function search(){
+		if (char.done) return;
 		if (char.selectedRow > char.row)      char.update(char.row + 1, char.col);
 		else if (char.selectedRow < char.row) char.update(char.row - 1, char.col);
 		else if (char.selectedCol > char.col) char.update(char.row, char.col + 1);
