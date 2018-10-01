@@ -37,19 +37,29 @@
 					   mapCols: 40,
 					   cellSize: 1200 / 40};
 
-			function makeLoiterer(row, col, axis, rangeLow, rangeHigh){
+			function makeLoiterer(l, frequency, wait){
+				let row = l.row, col = l.col, axis = l.axis, rangeLow = l.rangeLow, rangeHigh = l.rangeHigh;
 				function loiterTitan() {
-					setInterval(
-						makeSimpleLoiter(axis, makeTitan(row, col, map), rangeLow, rangeHigh), 
-					3000);
+					let titan = makeTitan(row, col, map);
+					function waitTime(){
+						setInterval(makeSimpleLoiter(axis, titan, rangeLow, rangeHigh), 
+						frequency);
+					}
+					setTimeout(waitTime, wait);
 				}
 				return loiterTitan;
 			}
-			let loiter1 = {row: 5, col: 0, axis:"col", rangeLow:0, rangeHigh:5}
-			let loiter2 = {row: 10, col: 5, axis:"row", rangeLow:5, rangeHigh:10};
-			makeLoiterer(loiter1.row, loiter1.col, loiter1.axis, loiter1.rangeLow, loiter1.rangeHigh)();
-			makeLoiterer(loiter2.row, loiter2.col, loiter2.axis, loiter2.rangeLow, loiter2.rangeHigh)();
-			// setTimeout(makeLoiterer(13), 6000);
+			let loiterRight = {row: 5, col: 6, axis:"col", rangeLow:6, rangeHigh:7};
+			let loiterLeft = {row: 5, col: 4, axis:"col", rangeLow:3, rangeHigh:4}
+			let loiterUp = {row: 4, col: 5, axis:"row", rangeLow:3, rangeHigh:4};
+			let loiterDown = {row: 6, col: 5, axis:"row", rangeLow:6, rangeHigh:7};
+			let rotateDelay = 2000;
+			// makeLoiterer(loiterLeft)(); makeLoiterer(loiterRight)();
+			// makeLoiterer(loiterUp)(); makeLoiterer(loiterDown)();
+			makeLoiterer(loiterLeft, rotateDelay, rotateDelay * 0)();
+			makeLoiterer(loiterUp, rotateDelay, rotateDelay * 1)();
+			makeLoiterer(loiterRight, rotateDelay, rotateDelay * 2)();
+			makeLoiterer(loiterDown, rotateDelay, rotateDelay * 3)();
 			
 		}
 	</script>
