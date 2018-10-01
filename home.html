@@ -38,9 +38,10 @@
 					   cellSize: 1200 / 40};
 
 			let titans = [];
-			let total = 3
-			for (let i = 1; i <= total; i++){
-				let titan = makeTitan(0, i, map);
+			let total = 25;
+			let range = 20;
+			for (let i = 0; i < total; i++){
+				let titan = makeTitan(i, 0, map);
 				setInterval(makeSimpleLoiter("col", titan, total), 3000);
 				titans.push(titan);
 			}
