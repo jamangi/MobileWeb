@@ -18,15 +18,28 @@ class Map {
 
 	layTile(row, col, size) {
 		let tile = document.createElement("div"); 
-		tile.style.height = this.cellSize * size + "px"; 
-		tile.style.width = this.cellSize * size + "px";
-		tile.style.left = col * this.cellSize + "px";
-		tile.style.top = row * this.cellSize + "px";
+		setValues(tile, col * this.cellSize, row * this.cellSize, 
+				  this.cellSize * size, this.cellSize * size);
 		tile.setAttribute("class", "tile"); 
-		this.mapDiv.append(tile);
 		let tileImg = document.createElement("img"); 
-		tile.append(tileImg);
 		tileImg.setAttribute("src", this.floorTileImg);
+		tile.append(tileImg);
+		this.mapDiv.append(tile);
+	}
 
+	makeObject(imgObj, row, col){
+		let imgDiv = document.createElement("div");
+		setValues(imgDiv, this.cellSize * col, this.cellSize * row, 
+				  this.cellSize * imgObj.objHeight, 
+				  this.cellSize * imgObj.objHeight);
+	}
+}
+
+class ImageObject{
+	constructor(objWidth, objHeight, barrierList, img){
+		this.objWidth = objWidth;
+		this.objHeight = objHeight;
+		this.barrierList = barrierList;
+		this.img = img;
 	}
 }

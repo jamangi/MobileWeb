@@ -32,10 +32,9 @@ class Character {
 		charDiv.character = this;
 		charDiv.append(img); gb.append(charDiv)
 		charDiv.setAttribute("id", this.uid); charDiv.setAttribute("class", "character");
-		charDiv.style.left = this.left + "px"; 
-		charDiv.style.top = this.top + "px";
-		charDiv.style.height = this.imgCellHeight * this.map.cellSize + "px";
-		charDiv.style.width = this.imgCellWidth * this.map.cellSize + "px";
+		setValues(charDiv, this.left, this.top, 
+				  this.imgCellWidth * this.map.cellSize, 
+				  this.imgCellHeight * this.map.cellSize);
 		charDiv.style["z-index"] = this.row;
 		charDiv.style.transition = "left "+this.speed+"ms linear, top "+this.speed+"ms linear";
 		img.setAttribute("src", this.imgFolder+this.imgName+this.pose+".gif"); 
