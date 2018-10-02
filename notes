@@ -23,7 +23,9 @@ potentially use socket to show other player's movements
 
 ##########################################################################
 
-Movement and Auto Scroll
+Search Algorithm
+
+When simple search fails, switch to BFS
 
 
 
@@ -45,3 +47,19 @@ barrierList entry not picked up by character during update
 barrierList of boxes weren't picked up by a character
 	- function creating the map didn't return map, so character didn't recieve it.
 	- discovered this by attaching an else statement to the barrier check in character
+
+##########################################################################
+
+Dialogue 
+
+
+
+##########################################################################
+
+Sizes
+
+cabinet full: 56px 56px
+cabinet bottom: 56px 28px
+cabinet top: 56px 28px
+
+box 32px 32px

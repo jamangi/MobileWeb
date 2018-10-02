@@ -4,3 +4,7 @@ function setValues(obj, left, top, width, height){
 	obj.style.width = width + "px";
 	obj.style.height = height + "px";
 }
+
+function check(map, row, col){
+	return map.barrierList[row +'-'+col] === undefined;
+}

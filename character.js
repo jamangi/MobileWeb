@@ -101,18 +101,21 @@ class Character {
 
 function makeSimpleSearch(char){
 	function search(){
+		let row = char.row;
+		let col = char.col;
 		if (char.done) return;
-		if (char.selectedRow > char.row)      char.update(char.row + 1, char.col);
-		else if (char.selectedRow < char.row) char.update(char.row - 1, char.col);
-		else if (char.selectedCol > char.col) char.update(char.row, char.col + 1);
-		else if (char.selectedCol < char.col) char.update(char.row, char.col - 1);
-		else {char.update(char.row, char.col); return;}
+		if (char.selectedRow > row 		&& check(char.map, row+1, col)) row += 1;
+		else if (char.selectedRow < row && check(char.map, row-1, col)) row -= 1;
+		else if (char.selectedCol > col && check(char.map, row, col+1)) col += 1;
+		else if (char.selectedCol < col && check(char.map, row, col-1)) col -= 1;
+		else {char.update(row, col); return;}
+		char.update(row, col);
 		setTimeout(char.pathSearch, char.speed);
 	}
 	return search;
 }
 
-function makeTitan(row, col, map){
+function makeTitan(map, row, col){
 	if (this.titanCount)
 		this.titanCount += 1;
 	else
@@ -156,7 +159,7 @@ function makeLoiterer(l, frequency, wait, map){
 	//currently only makes titans
 	let row = l.row, col = l.col, axis = l.axis, rangeLow = l.rangeLow, rangeHigh = l.rangeHigh;
 	function loiterTitan() {
-		let titan = makeTitan(row, col, map);
+		let titan = makeTitan(map, row, col);
 		function waitTime(){
 			setInterval(makeSimpleLoiter(axis, titan, rangeLow, rangeHigh), 
 			frequency);
