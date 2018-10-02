@@ -26,6 +26,7 @@
 	<script type="text/javascript" src="character.js"></script>
 	<script type="text/javascript" src="map.js"></script>
 	<script type="text/javascript" src="props.js"></script>
+	<script type="text/javascript" src="controller.js"></script>
 </head>
 <body>
 	<main>
@@ -41,6 +42,8 @@
 			
 			let map = makeSeaHorse();
 			loiterers(map, 4, 22);
+			let titan = makeTitan(0, 0, map);
+			let controller = new Controller(titan);
 			
 		}
 	</script>
