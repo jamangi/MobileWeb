@@ -66,10 +66,10 @@ class Character {
 
 
 		// 
-		this.lastPose = this.pose;
-		this.pose = this.mode + this.facing;
 		if (this.mode === "Run") this.speed = this.baseSpeed / 2;
 		else this.speed = this.baseSpeed;
+		this.lastPose = this.pose;
+		this.pose = this.mode + this.facing;
 
 		// check for obstacle, change cell and change position only if no obstacle
 		if(this.done === false){
@@ -93,7 +93,7 @@ class Character {
 		this.charDiv.style.top = this.top + "px";
 		this.charDiv.style["z-index"] = this.row;
 		let src = this.imgFolder+this.imgName+this.pose+".gif"
-		if (this.lastPose !== this.pose + this.facing)
+		if (this.lastPose !== this.pose)
 			this.charImg.setAttribute("src", src);
 	}
 
@@ -123,7 +123,7 @@ function makeTitan(row, col, map){
 	imgName="titan",
 	imgCellWidth = 1, 
 	imgCellHeight = 1,  
-	baseSpeed=300, 
+	baseSpeed=250, 
 	basePose="Sit",
 	facing="Right", 
 	mode="Walk";
