@@ -25,7 +25,7 @@ potentially use socket to show other player's movements
 
 Search Algorithm
 
-When simple search fails, switch to BFS
+When simple search fails, switch to BFS (later)
 
 
 
@@ -51,7 +51,11 @@ barrierList of boxes weren't picked up by a character
 ##########################################################################
 
 Dialogue 
-
+	- character click
+	- every character has an interaction handler (abstract class extends character)
+		- portrait, dialogueDiv
+		- talk() close() _text() _menu()
+		- __clear()
 
 
 ##########################################################################
