@@ -39,12 +39,12 @@
 		window.onload = function() {
 			// id, imgFolder, imgName, imgCellWidth, imgCellHeight,
 	            // row, col, pose, facing, baseSpeed, mode, map, search
-	        let m = {mapHeight: 1200, 
-					   mapWidth: 1200, 
-					   mapRows: 40, 
-					   mapCols: 40,
-					   cellSize: 1200 / 40,
-					   floorTileImg: "images/map/floor/brownfloor_2_2.png"};
+	       //  let m = {mapHeight: 1200, 
+					   // mapWidth: 1200, 
+					   // mapRows: 40, 
+					   // mapCols: 40,
+					   // cellSize: 1200 / 40,
+					   // floorTileImg: "images/map/floor/brownfloor_2_2.png"};
 
 			let ctop = {objWidth: 2, objHeight: 1, barrierList: [], 
 					 img: "images/map/material/cabinet_top.png"}
@@ -54,11 +54,11 @@
 			let cabinetTop = new ImageObject(ctop.objWidth, ctop.objHeight, ctop.barrierList, ctop.img);
 			let cabinetBot = new ImageObject(cbot.objWidth, cbot.objHeight, cbot.barrierList, cbot.img);
 
-			let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg)
+			// let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg)
 			// map.setTiles();
-			// map.addObject(cabinetTop, 4, 2);
-			// map.addObject(cabinetBot, 5, 2);
-			makeSeaHorse();
+			let map = makeSeaHorse();
+			map.addObject(cabinetTop, 4, 2);
+			map.addObject(cabinetBot, 5, 2);
 
 
 			let loiterRight = {row: 5, col: 6, axis:"col", rangeLow:6, rangeHigh:7};

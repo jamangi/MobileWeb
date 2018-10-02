@@ -42,3 +42,6 @@ imgObj not infront of titan
 barrierList entry not picked up by character during update
 	- logged barrier list to see contents
 	- add offset when applying imgobj barrier list to map barrier list
+barrierList of boxes weren't picked up by a character
+	- function creating the map didn't return map, so character didn't recieve it.
+	- discovered this by attaching an else statement to the barrier check in character

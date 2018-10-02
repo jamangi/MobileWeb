@@ -68,27 +68,39 @@ function makeSeaHorse() {
 	let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg);
 	map.setTiles();
 
-	let box = {objWidth: 1, objHeight: 1, barrierList: [0,0], 
+	let box = {objWidth: 1, objHeight: 1, barrierList: [[0,0]], 
 			   img: "images/map/material/box.png"};
 	
 	let u = 'up', d = 'down', r = 'right', l = 'left', 
 		ul = 'upleft', ur = 'upright', dl = "downleft", dr = "downright";
 	let drawlist = [r,r,r,u,u,r,ur,u,r,r,d,d,l,d,d,r,d,d,r];
 
-	let cursor = [3, 8];
+
+	drawlist = [r,u,r,u,r,r,u,u,r,r,r,d,l,d,r,d,r,
+				d,r,d,r,r,d,l,l,d,l,d,l,d,r,d,l,d,l,d,l,d,d,r,d,d,d,
+				l,d,l,l,l,u,u,u,r,r,d,l,d,r,u,r,u,l,u,u,l,
+				u,l,u,l,u,l,u,l,u,u,r,u,r,u,r,r,r,u,l,u]
+
+
+	let cursor = [10, 5];
+	map.addObject(box, cursor[0], cursor[1]);
 	for (let stroke of drawlist){
-		map.addObject(box, cursor[0], cursor[1]);
-		switch(stroke){
-			case u: cursor[0] -= 1; break;
-			case d: cursor[0] += 1; break;
-			case r: cursor[1] += 1; break;
-			case l: cursor[1] += 1; break;
-			case ur: cursor[0] -= 1; cursor[1] += 1;
-			case ul: cursor[0] -= 1; cursor[1] -= 1;
-			case dr: cursor[0] += 1; cursor[1] += 1;
-			case dl: cursor[0] += 1; cursor[1] -= 1;
+		for (let i = 0; i < 2; i++){
+			switch(stroke){
+				case u: cursor[0] -= 1; break;
+				case d: cursor[0] += 1; break;
+				case r: cursor[1] += 1; break;
+				case l: cursor[1] -= 1; break;
+				case ur: cursor[0] -= 1; cursor[1] += 1;
+				case ul: cursor[0] -= 1; cursor[1] -= 1;
+				case dr: cursor[0] += 1; cursor[1] += 1;
+				case dl: cursor[0] += 1; cursor[1] -= 1;
+			}
+			map.addObject(box, cursor[0], cursor[1]);
 		}
 		
 	}
+
+	return map;
 
 }
