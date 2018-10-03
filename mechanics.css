@@ -11,10 +11,13 @@
 
 #dialogue {left: 0%; height: 99%; width: 49%; border: 1px solid gold;
 			background: var(--purple);}
-#dialogue #headshot {position: absolute; width: 49%; height: 50%; 
+#dialogue #headshot {position: absolute; width: 50%; height: 50%; 
 					 text-align: center; border: 1px solid orange;}
+#dialogue #headshot-helper {height:100%;}
 #dialogue #headshot img {max-height: 100%; max-width: 100%; 
-						 min-width: 49%;}
+						 min-width: 50%; position: relative; 
+						 bottom:0;
+						 right:0;}
 #dialogue #textBox {position: absolute; width: 48%; height: 49%; top: 50%;
 					border: 1px solid orange; overflow-wrap: break-word;
 					text-align: center; overflow-y: scroll;}
