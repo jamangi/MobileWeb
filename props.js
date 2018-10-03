@@ -1,10 +1,10 @@
 function loiterers(map, row, col){
-	let ctop = {objWidth: 2, objHeight: 1, barrierList: [], 
+	let ctop = {ID: "cabinetTop_0", objWidth: 2, objHeight: 1, barrierList: [], 
 					 img: "images/map/material/cabinet_top.png"}
-	let cbot = {objWidth: 2, objHeight: 1, barrierList: [[0,0],[0,1]], 
+	let cbot = {ID: "cabinetBottom_0", objWidth: 2, objHeight: 1, barrierList: [[0,0],[0,1]], 
 			 img: "images/map/material/cabinet_bottom.png"}
-	let cabinetTop = new ImageObject(ctop.objWidth, ctop.objHeight, ctop.barrierList, ctop.img);
-	let cabinetBot = new ImageObject(cbot.objWidth, cbot.objHeight, cbot.barrierList, cbot.img);
+	let cabinetTop = new ImageObject(ctop.ID, ctop.objWidth, ctop.objHeight, ctop.barrierList, ctop.img);
+	let cabinetBot = new ImageObject(cbot.ID, cbot.objWidth, cbot.objHeight, cbot.barrierList, cbot.img);
 	map.addObject(cabinetTop, row, col);
 	map.addObject(cabinetBot, row + 1, col);
 

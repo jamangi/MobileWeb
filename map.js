@@ -5,7 +5,8 @@ class Map {
 		this.mapRows = mapRows;
 		this.mapCols = mapCols;
 		this.cellSize = mapWidth / mapCols;
-		this.barrierList = {}
+		this.barrierList = {};
+		this.items = {};
 		this.floorTileImg = floorTileImg;
 		this.mapDiv = document.getElementById("map");
 		this.mapDiv.map = this;
@@ -36,6 +37,7 @@ class Map {
 				  this.cellSize * imgObj.objWidth, 
 				  this.cellSize * imgObj.objHeight);
 		imgDiv.setAttribute("class", "object");
+		imgDiv.setAttribute("id", imgObj.ID);
 		imgDiv.style['z-index'] = row+1;
 
 		let img = document.createElement("img");
@@ -44,13 +46,19 @@ class Map {
 
 		this.mapDiv.append(imgDiv);
 
+		this.items[row+"-"+col] = imgObj;
 		for (let barrier of imgObj.barrierList)
 			this.barrierList[(barrier[0]+row) + "-" + (barrier[1]+col)] = true;
+	}
+
+	item(row, col){
+		return this.items[row+"-"+col];
 	}
 }
 
 class ImageObject{
-	constructor(objWidth, objHeight, barrierList, img){
+	constructor(ID, objWidth, objHeight, barrierList, img){
+		this.ID = ID;
 		this.objWidth = objWidth;
 		this.objHeight = objHeight;
 		this.barrierList = barrierList;
@@ -68,8 +76,7 @@ function makeSeaHorse() {
 	let map = new Map(m.mapWidth, m.mapHeight, m.mapRows, m.mapCols, m.floorTileImg);
 	map.setTiles();
 
-	let box = {objWidth: 1, objHeight: 1, barrierList: [[0,0]], 
-			   img: "images/map/material/box.png"};
+	let box = new ImageObject("box_0",1, 1, [[0,0]], "images/map/material/box.png");
 	
 	let u = 'up', d = 'down', r = 'right', l = 'left', 
 		ul = 'upleft', ur = 'upright', dl = "downleft", dr = "downright";
@@ -83,6 +90,7 @@ function makeSeaHorse() {
 
 
 	let cursor = [10, 5];
+	let count = 0;
 	map.addObject(box, cursor[0], cursor[1]);
 	for (let stroke of drawlist){
 		for (let i = 0; i < 2; i++){
@@ -96,6 +104,8 @@ function makeSeaHorse() {
 				case dr: cursor[0] += 1; cursor[1] += 1;
 				case dl: cursor[0] += 1; cursor[1] -= 1;
 			}
+			count++;
+			box = new ImageObject("box_"+count,1, 1, [[0,0]], "images/map/material/box.png")
 			map.addObject(box, cursor[0], cursor[1]);
 		}
 		

@@ -1,7 +1,7 @@
 class Character {
-	constructor(id, imgFolder, imgName, imgCellWidth, imgCellHeight,
+	constructor(ID, imgFolder, imgName, imgCellWidth, imgCellHeight,
 	            row, col, basePose, facing, baseSpeed, mode, map, search) {
-		this.uid = id; 
+		this.ID = ID; 
 		this.map = map;     
 		this.row = row; 
 		this.col = col; 
@@ -20,7 +20,7 @@ class Character {
 		this.top = row * map.cellSize;  
 		this.imgFolder = imgFolder;
 		this.imgName = imgName;
-		this.imgId = id + "Img";
+		this.imgId = ID + "Img";
 		this.imgCellWidth = imgCellWidth; 
 		this.imgCellHeight = imgCellHeight;
 		this.pathSearch = search;
@@ -31,7 +31,7 @@ class Character {
 		let img = document.createElement("img"); this.charImg = img;
 		charDiv.character = this;
 		charDiv.append(img); gb.append(charDiv)
-		charDiv.setAttribute("id", this.uid); charDiv.setAttribute("class", "character");
+		charDiv.setAttribute("id", this.ID); charDiv.setAttribute("class", "character");
 		setValues(charDiv, this.left, this.top, 
 				  this.imgCellWidth * this.map.cellSize, 
 				  this.imgCellHeight * this.map.cellSize);
@@ -121,7 +121,7 @@ function makeTitan(map, row, col){
 	else
 		this.titanCount = 1;
 
-	let id="titan"+this.titanCount,
+	let ID="titan"+this.titanCount,
 	imgFolder="images/titan/", 
 	imgName="titan",
 	imgCellWidth = 1, 
@@ -130,7 +130,7 @@ function makeTitan(map, row, col){
 	basePose="Sit",
 	facing="Right", 
 	mode="Walk";
-	let myChar = new Character(id, imgFolder, imgName, imgCellWidth, imgCellHeight,
+	let myChar = new Character(ID, imgFolder, imgName, imgCellWidth, imgCellHeight,
     				           row, col, basePose, facing, baseSpeed, mode, map, null);
 	myChar.pathSearch = makeSimpleSearch(myChar);
 
