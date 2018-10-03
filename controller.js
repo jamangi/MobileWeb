@@ -12,7 +12,8 @@ class Controller {
 		this.selectedDiv = undefined;
 		this.gb.addEventListener("click", this.makeClickListener());
 		this.runButton.addEventListener("click", this.makeToggle());
-		this.findButton.addEventListener("click", this.makeToggle());
+		// this.findButton.addEventListener("click", this.makeToggle());
+		this.findButton.addEventListener("click", this.makeFind());
 		this.consoleButton.addEventListener("click", this.makeToggle());
 		this.materialButton.addEventListener("click", this.makeToggle());
 	}
@@ -43,15 +44,25 @@ class Controller {
 		return processClick;
 	}
 
-	makeFindListener() {
+	makeFind() {
 		let home = this;
-		function find(char){ //char replaced with selectedId
+		function findUser(){ //char replaced with selectedId
+			let char = home.character;
 			let midLeft = home.gb.scrollLeft + home.gb.offsetWidth / 2;
+			console.log("midleft: " + midLeft)
 			home.gb.scrollLeft += char.left - midLeft;
 			let midTop = home.gb.scrollTop + home.gb.offsetHeight / 2;
 			home.gb.scrollLeft += char.top - midTop;
+
 		}
-		return find;
+		return findUser;
+	}
+
+	find(char){
+		let midLeft = this.gb.scrollLeft + this.gb.offsetWidth / 2;
+		this.gb.scrollLeft += char.left - midLeft;
+		let midTop = this.gb.scrollTop + this.gb.offsetHeight / 2;
+		this.gb.scrollLeft += char.top - midTop;
 	}
 
 
