@@ -2,10 +2,10 @@ class Controller {
 	constructor (char) {
 		this.character = char;
 		this.gb = document.getElementById("gamebox");
-		this.runButton = document.getElementById("run");
-		this.findButton = document.getElementById("find");
-		this.consoleButton = document.getElementById("console");
-		this.materialButton = document.getElementById("material");
+		this.runButton = document.getElementById("runButton");
+		this.findButton = document.getElementById("findButton");
+		this.consoleButton = document.getElementById("consoleButton");
+		this.materialButton = document.getElementById("materialButton");
 		this.map = char.map;
 		this.selectedID = undefined;
 		this.selectedImageObject = undefined;
@@ -61,12 +61,12 @@ class Controller {
 			let id = this.getAttribute("id")
 			if (this.className === "clicked"){
 				this.className = "";
-				if (id === "run")
+				if (id === "runButton")
 					home.character.mode = "Walk"
 			}
 			else{
 				this.className = "clicked";
-				if (id === "run")
+				if (id === "runButton")
 					home.character.mode = "Run"
 			}
 		}

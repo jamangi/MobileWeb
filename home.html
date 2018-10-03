@@ -3,47 +3,11 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>viewer 2.0</title>
+
 	<link rel="stylesheet" type="text/css" href="animations.css">
-	<style type="text/css">
-		* {margin: 0; padding: 0;}
-		:root { --purple: #4E4C67; --rose:#985F6F; --pink:#B4869F;
-			    --blue:#A6B1E1; --white:#DCD6F7;}
-		html, body, main {width: 100%; height: 100%;}
-		main {background: var(--white);}
-		article#gamebox {height: 95%; width: 100%; background:var(--rose); 
-						 overflow-x: scroll; overflow-y: scroll;}
-		footer {height: 4.9%; width: 100%; background:var(--blue); font-size: 50%;}
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="mechanics.css">
 
-		html, body, main, #gamebox, footer {position: relative; z-index: -1;}
-		.tile, .character, .object {position: absolute;}
-		.tile { z-index: -1;}
-		.character img {min-width: 70%; min-height: 70%; max-width: 100%; max-height: 100%;}
-		.tile img, .object img {width: 100%; height: 100%;}
-		.object {box-shadow: 3px -20px 120px 0px black;}
-
-		footer div {position: absolute; height: 100%; width: 10%; top: 0%; text-align: right; border-radius: 10% 5% 30% 15%; cursor: pointer;}
-
-		/*footer div:active {background-color: var(--rose);}*/
-
-		#run {right: 33%; z-index: 4;} 
-		#find {right: 23%; z-index: 3;}
-		#console {right: 13%; z-index: 2;}
-		#material {right: 3%; z-index: 1;}
-
-		footer div, footer div img {
-			-webkit-user-select: none; /* Chrome/Safari */        
-			-moz-user-select: none; /* Firefox */
-			-ms-user-select: none; /* IE10+ */
-			
-		}
-			  
-		footer div img {max-width: 100%; max-height: 100%; border-radius: 100% 100% 100% 100%;}
-		/*#run.clicked {box-shadow: 0px 0px 10px 0px gold inset;}*/
-		.clicked img {background: var(--rose);}
-
-
-
-	</style>
 	<script type="text/javascript" src="helpers.js"></script>
 	<script type="text/javascript" src="character.js"></script>
 	<script type="text/javascript" src="map.js"></script>
@@ -54,14 +18,28 @@
 	<main>
 		<article id="gamebox">
 			<article id="map">
-				
 			</article>
 		</article>
+		<div class="mechanic" id="dialogue">
+			<div id="headshot"><img src="images\people\lockune\lockuneSmileSmall.png"></div>
+			<div id="textbox"></div>
+		</div>
+		<div class="mechanic" id="console">
+			<div id="monitor"></div>
+			<div id="terminal"></div>
+		</div>
+		<div class="mechanic" id="scripts">
+			<div id="inventory"></div>
+			<div id="options">
+				<div id="makeScript"></div>
+				<div id="materialize"></div>
+			</div>
+		</div>
 		<footer>
-			<div id="material" unselectable="on"><img src="images/icons/material.png"></div>
-			<div id="console" unselectable="on"><img src="images/icons/hero.png"></div>
-			<div id="run" unselectable="on"><img src="images/icons/run.png"></div>
-			<div id="find" unselectable="on"><img src="images/icons/magnify.png"></div>
+			<div id="materialButton" unselectable="on"><img src="images/icons/material.png"></div>
+			<div id="consoleButton" unselectable="on"><img src="images/icons/hero.png"></div>
+			<div id="runButton" unselectable="on"><img src="images/icons/run.png"></div>
+			<div id="findButton" unselectable="on"><img src="images/icons/magnify.png"></div>
 		</footer>
 	</main>
 	<script id="characterTest" type="text/javascript">

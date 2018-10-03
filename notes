@@ -48,6 +48,13 @@ barrierList of boxes weren't picked up by a character
 	- function creating the map didn't return map, so character didn't recieve it.
 	- discovered this by attaching an else statement to the barrier check in character
 
+###########################################################################
+
+Mechanics
+
+Dialogue div appearing but Console and Scripts divs aren't appearing (css)
+ - height had no semicolon after it
+
 ##########################################################################
 
 Dialogue 

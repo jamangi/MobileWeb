@@ -1,0 +1,33 @@
+* {margin: 0; padding: 0;}
+:root { --purple: #4E4C67; --rose:#985F6F; --pink:#B4869F;
+	    --blue:#A6B1E1; --white:#DCD6F7;}
+html, body, main {width: 100%; height: 100%;}
+main {background: var(--white);}
+article#gamebox {height: 95%; width: 100%; background:var(--rose); 
+				 overflow-x: scroll; overflow-y: scroll;}
+footer {height: 4.9%; width: 100%; background:var(--blue); font-size: 50%;}
+
+html, body, main, #gamebox, footer {position: relative; z-index: -1;}
+.tile, .character, .object {position: absolute;}
+.tile { z-index: -1;}
+.character img {min-width: 70%; min-height: 70%; max-width: 100%; max-height: 100%;}
+.tile img, .object img {width: 100%; height: 100%;}
+.object {box-shadow: 3px -20px 120px 0px black;}
+
+footer div {position: absolute; height: 100%; width: 10%; top: 0%; text-align: right; border-radius: 10% 5% 30% 15%; cursor: pointer;}
+
+/*footer div:active {background-color: var(--rose);}*/
+
+#runButton {right: 33%; z-index: 4;} 
+#findButton {right: 23%; z-index: 3;}
+#consoleButton {right: 13%; z-index: 2;}
+#materialButton {right: 3%; z-index: 1;}
+
+footer div, footer div img {
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+	
+}
+	  
+footer div img {max-width: 100%; max-height: 100%; border-radius: 100% 100% 100% 100%;}
