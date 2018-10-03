@@ -10,9 +10,9 @@
 			    --blue:#A6B1E1; --white:#DCD6F7;}
 		html, body, main {width: 100%; height: 100%;}
 		main {background: var(--white);}
-		article#gamebox {height: 90%; width: 100%; background:var(--rose); 
+		article#gamebox {height: 95%; width: 100%; background:var(--rose); 
 						 overflow-x: scroll; overflow-y: scroll;}
-		footer {height: 10%; width: 100%; background:var(--blue); font-size: 60%;}
+		footer {height: 4.9%; width: 100%; background:var(--blue); font-size: 50%;}
 
 		html, body, main, #gamebox, footer {position: relative; z-index: -1;}
 		.tile, .character, .object {position: absolute;}
@@ -21,12 +21,26 @@
 		.tile img, .object img {width: 100%; height: 100%;}
 		.object {box-shadow: 3px -20px 120px 0px black;}
 
-		#run {position: absolute; height: 50%; width: 10%; 
-			  right: 5%; top: 25%; text-align: center;
-			  border-radius: 10% 5% 30% 15%; cursor: pointer;}
-		#run img {max-width: 100%; max-height: 100%; border-radius: 100% 100% 100% 100%;}
+		footer div {position: absolute; height: 100%; width: 10%; top: 0%; text-align: right; border-radius: 10% 5% 30% 15%; cursor: pointer;}
+
+		/*footer div:active {background-color: var(--rose);}*/
+
+		#run {right: 33%; z-index: 4;} 
+		#find {right: 23%; z-index: 3;}
+		#console {right: 13%; z-index: 2;}
+		#material {right: 3%; z-index: 1;}
+
+		footer div, footer div img {
+			-webkit-user-select: none; /* Chrome/Safari */        
+			-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* IE10+ */
+			
+		}
+			  
+		footer div img {max-width: 100%; max-height: 100%; border-radius: 100% 100% 100% 100%;}
 		/*#run.clicked {box-shadow: 0px 0px 10px 0px gold inset;}*/
-		#run.clicked img {box-shadow: 0px 0px 10px 0px gold;}
+		.clicked img {background: var(--rose);}
+
 
 
 	</style>
@@ -44,7 +58,10 @@
 			</article>
 		</article>
 		<footer>
-			<div id="run"><img src="images/icons/run.png"></div>
+			<div id="material" unselectable="on"><img src="images/icons/material.png"></div>
+			<div id="console" unselectable="on"><img src="images/icons/hero.png"></div>
+			<div id="run" unselectable="on"><img src="images/icons/run.png"></div>
+			<div id="find" unselectable="on"><img src="images/icons/magnify.png"></div>
 		</footer>
 	</main>
 	<script id="characterTest" type="text/javascript">

@@ -52,7 +52,7 @@ barrierList of boxes weren't picked up by a character
 
 Dialogue 
 	- character click
-	- every character has an interaction handler (abstract class extends character)
+	- every npc has an interaction handler (abstract class extends character)
 		- processClick <override> - sets sequence
 		- portrait, dialogueDiv, sequence{ key:[func(params)] }
 		- _text(string) _menu([option obj]) _close()
@@ -86,7 +86,11 @@ scarlet left,right: 42px 58px
 
 slime up: 28px 20px 
 height of tallest, width of widest, all bottom pixel
+height of tallest leap start from the right of slime
 
+ghost down: 38px 45px from height of tallest, width of widest
+
+bunny left: 29px 27px
 ###########################################################################
 
 Gif Timings
@@ -100,6 +104,8 @@ rubyWalk all 20
 rubyRun 15left 10 15right 10
 
 scarletStand: all 20
+
+bunny down 10
 
 ###########################################################################
 

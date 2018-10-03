@@ -2,14 +2,19 @@ class Controller {
 	constructor (char) {
 		this.character = char;
 		this.gb = document.getElementById("gamebox");
+		this.runButton = document.getElementById("run");
+		this.findButton = document.getElementById("find");
+		this.consoleButton = document.getElementById("console");
+		this.materialButton = document.getElementById("material");
 		this.map = char.map;
 		this.selectedID = undefined;
 		this.selectedImageObject = undefined;
 		this.selectedDiv = undefined;
-		this.runButton = document.getElementById("run");
-		this.findButton = document.getElementById("find");
 		this.gb.addEventListener("click", this.makeClickListener());
-		this.runButton.addEventListener("click", this.makeRunToggle());
+		this.runButton.addEventListener("click", this.makeToggle());
+		this.findButton.addEventListener("click", this.makeToggle());
+		this.consoleButton.addEventListener("click", this.makeToggle());
+		this.materialButton.addEventListener("click", this.makeToggle());
 	}
 
 	makeClickListener() {
@@ -50,16 +55,19 @@ class Controller {
 	}
 
 
-	makeRunToggle() {
+	makeToggle() {
 		let home = this;
 		function processClick() {
-			if (home.runButton.className === "clicked"){
-				home.runButton.className = "";
-				home.character.mode = "Walk"
+			let id = this.getAttribute("id")
+			if (this.className === "clicked"){
+				this.className = "";
+				if (id === "run")
+					home.character.mode = "Walk"
 			}
 			else{
-				home.runButton.className = "clicked";
-				home.character.mode = "Run"
+				this.className = "clicked";
+				if (id === "run")
+					home.character.mode = "Run"
 			}
 		}
 		return processClick;
