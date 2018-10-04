@@ -38,14 +38,16 @@
 	top:0%;
 	right:1%;
 }
-#infoBox {position: absolute; width: 48%; height: 49%; top: 50%;
+#infoBox, #userGif {position: absolute; width: 48%; height: 49%; top: 50%;
 					 overflow-wrap: break-word;
 					text-align: center; color:var(--blue);}
+#userGif {right:0; color:var(--white);}
 
 .helper {display: inline-block; height:100%; width:0; vertical-align: middle};
-#infoBoxGif {vertical-align: middle;}
+#infoBoxGif, #userGifGif {vertical-align: middle;}
 
-#infoBoxClose {position: absolute; bottom: 0; right:0;}
+#infoBoxClose,#userGifClose {position: absolute; bottom: 0; right:0;}
+#userGifClose {left:0;}
 
 #selectBox {position: absolute; width: 50%; height: 100%; left: 50%;
 					 overflow-wrap: break-word; text-align: center; color: var(--white);}
