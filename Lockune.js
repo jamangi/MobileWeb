@@ -136,7 +136,7 @@ class Lockune extends Character {
 				home.print();
 				home.infoBox.removeEventListener("click", home.close, true);
 				home.infoBox.addEventListener("click", home.hide, true);
-				home.infoBoxClose.innerHTML = "hide";
+				// home.infoBoxClose.innerHTML = "hide";
 				home.selectBox.addEventListener("click", home.nextText, true);
 			} //set textIndex to 0, print, add Next listener // replace close with hide from infobox
 			return talk;

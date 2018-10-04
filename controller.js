@@ -12,7 +12,11 @@ class Controller {
 		this.userCollected = document.getElementById("userCollected");
 		this.userDefeats = document.getElementById("userDefeats");
 		this.userLocation = document.getElementById("userLocation");
+
 		this.userGif = document.getElementById("userGif");
+		this.userGifName = document.getElementById("userGifName");
+		this.userGifGif = document.getElementById("userGifGif");
+		this.userGifClose = document.getElementById("userGifClose");
 
 		this.collectDiv = document.getElementById("collect");
 		this.dropDiv = document.getElementById("drop");
@@ -31,6 +35,7 @@ class Controller {
 		this.findButton.addEventListener("click", this.makeFind());
 
 		this.consoleButton.addEventListener("click", this.makeToggle());
+		this.userGifClose.addEventListener("click", this.makeToggle());
 		this.materialButton.addEventListener("click", this.makeToggle());
 
 		this.userSelect.style.display = 'none';
@@ -91,8 +96,13 @@ class Controller {
 		let home = this;
 		function processClick() {
 			let id = this.getAttribute("id")
-			if (this.className === "clicked"){
-				this.className = "";
+			let that = this;
+			if (id === "userGifClose"){
+				id = "consoleButton";
+				that = home.consoleButton;
+			}
+			if (that.className === "clicked"){
+				that.className = "";
 				if (id === "runButton")
 					home.character.mode = "Walk";
 				if (id === "consoleButton")
@@ -100,7 +110,7 @@ class Controller {
 					
 			}
 			else{
-				this.className = "clicked";
+				that.className = "clicked";
 				if (id === "runButton")
 					home.character.mode = "Run";
 				if (id === "consoleButton")
