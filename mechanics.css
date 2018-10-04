@@ -37,7 +37,8 @@
 
 #selectBox {position: absolute; width: 50%; height: 100%; left: 50%;
 					 overflow-wrap: break-word; text-align: center; color: var(--white);}
-.selectChoice {position: relative; margin-top: 20%; cursor: pointer;}
+.selectChoice {position: relative; height: 50%; cursor: pointer;}
+.selectChoice .menuText {position: relative; top:45%; text-align: center;}
 
 #console {right: 0%; height: 100%; width: 50%; border: 1px solid blue;
 		  display: none;}

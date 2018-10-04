@@ -50,7 +50,7 @@ class Lockune extends Character {
 		this.functions = {training1: [["menu", this.menu]]};
 		this.textIndex = 0;
 		this.functionIndex = 0;
-		this.menuItems = [["Heal", this.recover],["Talk", this.talk]]
+		this.menuItems = [["Talk", this.talk], ["Heal", this.recover]]
 
 		// element control
 		this.dialogueDiv.style.display = "none";
@@ -154,7 +154,10 @@ class Lockune extends Character {
 					let selection = document.createElement("div");
 					selection.setAttribute('id', item[0]); 
 					selection.setAttribute('class', 'selectChoice');
-					selection.innerHTML = item[0];
+					let text = document.createElement("div");
+					text.setAttribute("class", "menuText")
+					text.innerHTML = item[0];
+					selection.append(text);
 
 					selection.addEventListener("click", item[1], false);
 					home.selectBox.append(selection);
