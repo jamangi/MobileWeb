@@ -9,11 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="mechanics.css">
 
 	<script type="text/javascript" src="helpers.js"></script>
-	<script type="text/javascript" src="character.js"></script>
+	<script type="text/javascript" src="Character.js"></script>
 	<script type="text/javascript" src="map.js"></script>
 	<script type="text/javascript" src="props.js"></script>
 	<script type="text/javascript" src="controller.js"></script>
 	<script type="text/javascript" src="display.js"></script>
+	<script type="text/javascript" src="Lockune.js"></script>
 </head>
 <body>
 	<main>
@@ -54,8 +55,9 @@
 			
 			let map = makeSeaHorse();
 			loiterers(map, 4, 22);
-			let titan = makeTitan(map, 0, 0);
-			let controller = new Controller(titan);
+			let user = makeTitan(map, 0, 0);
+			let controller = new Controller(user);
+			let lockune = new Lockune(user);
 			
 		}
 	</script>

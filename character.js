@@ -176,7 +176,3 @@ function makeLoiterer(l, frequency, wait, map){
 	}
 	return loiterTitan;
 }
-
-function lockune(){
-
-}
