@@ -4,20 +4,38 @@ class Controller {
 		this.gb = document.getElementById("gamebox");
 		this.runButton = document.getElementById("runButton");
 		this.findButton = document.getElementById("findButton");
-		this.findInterval = undefined;
 		this.consoleButton = document.getElementById("consoleButton");
+		this.findInterval = undefined;
+
+		this.userSelect = document.getElementById("userSelect");
+		this.userHeadshot = document.getElementById("userHeadshot");
+		this.userCollected = document.getElementById("userCollected");
+		this.userDefeats = document.getElementById("userDefeats");
+		this.userLocation = document.getElementById("userLocation");
+		this.userGif = document.getElementById("userGif");
+
+		this.collectDiv = document.getElementById("collect");
+		this.dropDiv = document.getElementById("drop");
+
 		this.materialButton = document.getElementById("materialButton");
 		this.map = char.map;
 		this.selectedIDs = [];
 		this.selectedImageObject = undefined;
 		this.selectedDiv = undefined;
+
+
 		this.gb.addEventListener("click", this.makeClickListener());
+
 		this.runButton.addEventListener("click", this.makeToggle());
 	
 		this.findButton.addEventListener("click", this.makeFind());
 
 		this.consoleButton.addEventListener("click", this.makeToggle());
 		this.materialButton.addEventListener("click", this.makeToggle());
+
+		this.userSelect.style.display = 'none';
+		this.dropDiv.style.display = 'none';
+		this.collectDiv.style.display = 'none';
 
 		this.scrollToLeft = 0;
 		this.scrollToTop = 0;
@@ -77,12 +95,16 @@ class Controller {
 				this.className = "";
 				if (id === "runButton")
 					home.character.mode = "Walk";
+				if (id === "consoleButton")
+					home.userSelect.style.display = "none";
 					
 			}
 			else{
 				this.className = "clicked";
 				if (id === "runButton")
 					home.character.mode = "Run";
+				if (id === "consoleButton")
+					home.userSelect.style.display = "block";
 					
 			}
 		}
