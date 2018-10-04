@@ -4,13 +4,14 @@
 	position: absolute;
 	bottom:0;
 	border: 1px solid gold;
+	height: 99%; width: 49%;
+	border: 2px solid var(--blue);
 }
 
 #display {position: absolute; height:33%; width: 98%;
 		  bottom: 7%;}
 
-#dialogue {left: 0%; height: 99%; width: 49%; border: 2px solid var(--blue);
-			background: var(--purple);}
+#dialogue {left: 0%; background: var(--purple);}
 #headshot {position: absolute; width: 50%; height: 50%; 
 					 text-align: center; 
 					 border-right: 1px solid var(--blue);
