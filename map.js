@@ -46,13 +46,48 @@ class Map {
 
 		this.mapDiv.append(imgDiv);
 
-		this.items[row+"-"+col] = imgObj;
-		for (let barrier of imgObj.barrierList)
-			this.barrierList[(barrier[0]+row) + "-" + (barrier[1]+col)] = true;
+		imgObj.row = row; imgObj.col = col;
+		this.enter(imgObj);
+
+		
 	}
 
-	item(row, col){
-		return this.items[row+"-"+col];
+	getItems(row, col){
+		let itemDict = this.items[row+"-"+col];
+		let res = [];
+		for (let item in itemDict) {
+			if (!itemDict.hasOwnProperty(item)) continue;
+			if (itemDict[item])
+				res.push(itemDict[item]);
+		}
+		return res;
+	}
+
+	find(ID){
+		return this.items[ID];
+	}
+
+	initCell(row, col){
+		if (this.items[row+'-'+col] === undefined)
+			this.items[row+'-'+col] = {};
+	}
+
+	leave(ele){
+		this.items[ele.row+'-'+ele.col][ele.ID] = undefined;
+		this.items[ele.ID] = undefined;
+		if (ele.constructor.name === "ImageObject")
+			for (let barrier of ele.barrierList)
+					this.barrierList[(barrier[0]+row) + "-" + (barrier[1]+col)] = false;
+	}
+
+	enter(ele){
+		this.initCell(ele.row, ele.col)
+		this.items[ele.row+'-'+ele.col][ele.ID] = ele;
+		this.items[ele.ID] = ele;
+		if (ele.constructor.name === "ImageObject")
+			for (let barrier of ele.barrierList)
+					this.barrierList[(barrier[0]+ele.row) + "-" + (barrier[1]+ele.col)] = true;
+
 	}
 }
 
@@ -63,6 +98,8 @@ class ImageObject{
 		this.objHeight = objHeight;
 		this.barrierList = barrierList;
 		this.img = img;
+		this.row = '';
+		this.col = '';
 	}
 }
 

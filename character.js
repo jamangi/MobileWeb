@@ -25,6 +25,11 @@ class Character {
 		this.imgCellHeight = imgCellHeight;
 		this.pathSearch = search;
 		this.done = true;
+
+		this.display = undefined;
+
+		//set in map
+		this.map.enter(this);
 		//create character object
 		let gb = document.getElementById("gamebox"); 
 		let charDiv = document.createElement("div"); this.charDiv = charDiv;
@@ -73,16 +78,19 @@ class Character {
 
 		// check for obstacle, change cell and change position only if no obstacle
 		if(this.done === false){
+			this.map.leave(this);
 			switch(this.facing){
 				case "Right": this.col += 1; break;
 				case "Left": this.col -= 1; break;
 				case "Up": this.row -= 1; break;
 				case "Down": this.row += 1; break;
 			}	
+			this.map.enter(this);
 
 		} else this.pose = this.basePose + this.facing
 		// reposition
 		this.reposition();
+
 	}
 
 	reposition(){
@@ -121,7 +129,7 @@ function makeTitan(map, row, col){
 	else
 		this.titanCount = 1;
 
-	let ID="titan"+this.titanCount,
+	let ID="titan_"+this.titanCount,
 	imgFolder="images/titan/", 
 	imgName="titan",
 	imgCellWidth = 1, 
@@ -167,4 +175,8 @@ function makeLoiterer(l, frequency, wait, map){
 		setTimeout(waitTime, wait);
 	}
 	return loiterTitan;
+}
+
+function lockune(){
+
 }

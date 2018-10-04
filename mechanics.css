@@ -6,7 +6,7 @@
 	border: 1px solid gold;
 }
 
-#toolbar {position: absolute; height:33%; width: 98%; border:1px solid green;
+#display {position: absolute; height:33%; width: 98%; border:1px solid green;
 		  bottom: 7%;}
 
 #dialogue {left: 0%; height: 99%; width: 49%; border: 1px solid gold;
@@ -20,7 +20,7 @@
 	height: 100%;
 	vertical-align: middle;
 }
-#dialogue #headshot img {max-height: 100%; max-width: 100%; 
+#dialogue #headshot img {max-height: 100%; max-width: 90%; 
 						 min-width: 50%; position: relative; 
 						 vertical-align: bottom;
 						 right:0;}

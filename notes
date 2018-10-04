@@ -48,6 +48,9 @@ barrierList of boxes weren't picked up by a character
 	- function creating the map didn't return map, so character didn't recieve it.
 	- discovered this by attaching an else statement to the barrier check in character
 
+items function wasnt working
+		- it shared name with items field
+
 ###########################################################################
 
 Mechanics
@@ -98,6 +101,8 @@ height of tallest leap start from the right of slime
 ghost down: 38px 45px from height of tallest, width of widest
 
 bunny left: 29px 27px
+
+doggies down: 33px 60px
 ###########################################################################
 
 Gif Timings
@@ -129,3 +134,11 @@ sadSmall, sadBig, specialSmall, specialBig
 scarlet special: 144px 144px
 smileSmall, smileBig, shockSmall, shockBig
 sadSmall, sadBig, specialSmall, specialBig
+
+#####
+
+Names
+
+Solomon
+Miranda
+Nick
