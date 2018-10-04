@@ -75,6 +75,8 @@ Scene - Tracks the scene you're in
 	- Location
 	- Name
 
+Talk menu item isn't accepting click event listener, but it's sibling Heal is.
+
 
 ##########################################################################
 

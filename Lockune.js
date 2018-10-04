@@ -17,9 +17,16 @@ class Lockune extends Character {
 		super(ID, imgFolder, imgName, imgCellWidth, imgCellHeight,
 	    	  row, col, basePose, facing, baseSpeed, mode, map, null);
 
-		this.charDiv = document.getElementById(this.ID);
+		// character mind
 		this.user = user;
+		this.context = 'training1';
+		this.objective = 'roam';
+		this.mood = "SmileSmall";
+		this.expression = this.imgFolder + this.imgName + this.mood + '.png';
 		this.pathSearch = makeSimpleSearch(this);
+
+		// relavant html elements
+		this.charDiv = document.getElementById(this.ID);
 		this.dialogueDiv = document.getElementById("dialogue");
 		this.headshotImg = document.getElementById("headshotImg");
 		this.selectBox = document.getElementById("selectBox");
@@ -27,18 +34,6 @@ class Lockune extends Character {
 		this.infoBoxName = document.getElementById("infoBoxName");
 		this.infoBoxClose = document.getElementById("infoBoxClose");
 		this.infoBoxGif = document.getElementById("infoBoxGif");
-
-
-
-
-		this.context = 'training1';
-		this.textBlocks = {training1: []};
-		this.functions = {training1: []};
-		this.textIndex = 0;
-		this.functionIndex = 0;
-
-		this.mood = "SmileSmall";
-		this.expression = this.imgFolder + this.imgName + this.mood + '.png';
 
 		/// interactive functions
 		this.open = this.makeOpen();
@@ -48,22 +43,28 @@ class Lockune extends Character {
 		this.nextText = this.makeNextText();
 		this.talk = this.makeTalk();
 		this.recover = this.makeRecover();
+		this.menu = this.makeMenu();
 
-		this.menuItems = [["Talk", this.talk],["Heal", this.recover]]
+		// dialogue flow
+		this.textBlocks = {training1: ["Show me what you got."]};
+		this.functions = {training1: [["menu", this.menu]]};
+		this.textIndex = 0;
+		this.functionIndex = 0;
+		this.menuItems = [["Heal", this.recover],["Talk", this.talk]]
 
+		// element control
 		this.dialogueDiv.style.display = "none";
-		
-		this.charDiv.addEventListener("click", this.toggle, false);
-		this.infoBox.addEventListener("click", this.hide, false);
-
-		
+		this.charDiv.addEventListener("click", this.toggle, true);
+		this.infoBox.addEventListener("click", this.hide, true);
 
 	}
 
 		execute(){
-			this.functions[this.context][this.functionIndex]();
+			this.clear();
+			this.functions[this.context][this.functionIndex][1]();
 		} 
 		print(){
+			this.clear();
 			this.selectBox.innerHTML = this.textBlocks[this.context][this.textIndex];
 		} //print textBlock[textIndex]
 		makeNextText(){
@@ -73,9 +74,10 @@ class Lockune extends Character {
 				if (home.textIndex >= home.textBlocks[home.context].length)
 				{
 					home.textIndex = 0;
-					home.selectBox.removeEventListener("click", home.nextText, false);
+					home.selectBox.removeEventListener("click", home.nextText, true);
 					home.nextFunction();
-				}
+				} else
+					home.print()
 			} //change textIndex, print or nextFunction
 
 			return nextText;
@@ -83,9 +85,12 @@ class Lockune extends Character {
 		nextFunction(){
 			this.functionIndex++;
 			if (this.functionIndex >= this.functions[this.context].length){
-				this.close();
-			}
-			this.execute();
+				if (this.objective === "roam")
+					this.menu()
+				else
+					this.close();
+			} else
+				this.execute();
 		} //remove next listener, increase functionIndex
 		makeClose(){
 			let home = this;
@@ -107,9 +112,9 @@ class Lockune extends Character {
 			let home = this;
 			function toggle(){
 				if (home.dialogueDiv.style.display == "none")
-					home.dialogueDiv.style.display = "block";
+					home.open();
 				else
-					home.dialogueDiv.style.display = "none";
+					home.hide();
 			}
 			return toggle;
 		}
@@ -118,8 +123,8 @@ class Lockune extends Character {
 			function open(){ //might check context to decide expression
 				home.headshotImg.setAttribute("src", home.expression);
 				home.dialogueDiv.style.display = "block";
-				home.execute();
-
+				if (home.functions[home.context][home.functionIndex][0] === "menu")
+					home.execute();
 			}
 			return open;
 		}
@@ -127,34 +132,46 @@ class Lockune extends Character {
 			let home = this;
 			function talk(){
 				console.log("talk selected");
-				hide.textIndex = 0;
-				hide.print();
-				hide.selectBox.addEventListener("click", hide.nextText, false);
-				hide.infoBox.removeEventListener("click", hide.close, false);
-				hide.infoBox.addEventListener("click", hide.hide, false);
-				hide.infoBoxClose.innerHTML = "hide";
+				home.textIndex = 0;
+				home.print();
+				home.infoBox.removeEventListener("click", home.close, true);
+				home.infoBox.addEventListener("click", home.hide, true);
+				home.infoBoxClose.innerHTML = "hide";
+				home.selectBox.addEventListener("click", home.nextText, true);
 			} //set textIndex to 0, print, add Next listener // replace close with hide from infobox
 			return talk;
 		}
-		menu(){
-			this.selectBox.removeEventListener("click", this.nextText, false);
-			this.infoBox.addEventListener("click", this.close, false);
-			this.infoBox.removeEventListener("click", this.hide, false);
-			this.infoBoxClose.innerHTML = "close";
+		makeMenu(){
+			let home = this;
+			function menu(){
+				home.clear();
+				home.selectBox.removeEventListener("click", home.nextText, true);
+				home.infoBox.addEventListener("click", home.close, true);
+				home.infoBox.removeEventListener("click", home.hide, true);
+				home.infoBoxClose.innerHTML = "close";
 
-			this.selectBox.innerHTML = "";
-			for (let item in this.menuItems) {
-				this.selectBox.innerHTML += "<div id="+item[0]+" class='selectChoice'>"+item[0]+"</div>"
-				let selection = document.getElementById(item[0]);
-				selection.addEventListener("click", item[1]);
-			}
-		} // replace hide with close listener in infoBox // add close listener
+				for (let item of home.menuItems) {
+					let selection = document.createElement("div");
+					selection.setAttribute('id', item[0]); 
+					selection.setAttribute('class', 'selectChoice');
+					selection.innerHTML = item[0];
+
+					selection.addEventListener("click", item[1], false);
+					home.selectBox.append(selection);
+				}
+			} // replace hide with close listener in infoBox // add close listener
+			return menu;
+		}
 		makeRecover(){
 			let home = this;
 			function recover(){
 				console.log("recover selected");
 			}
 			return recover;
+		}
+
+		clear(){
+			this.selectBox.innerHTML = "";
 		}
 		processSelection(){}
 		teachFile(){} 
