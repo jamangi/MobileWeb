@@ -11,18 +11,13 @@
 
 #dialogue {left: 0%; height: 99%; width: 49%; border: 2px solid var(--blue);
 			background: var(--purple);}
-#dialogue #headshot {position: absolute; width: 50%; height: 50%; 
+#headshot {position: absolute; width: 50%; height: 50%; 
 					 text-align: center; 
 					 border-right: 1px solid var(--blue);
 					 border-bottom: 1px solid var(--blue);
 					}
-#dialogue #headshot-helper {
-	display: inline-block;
-	width: 0%;
-	height: 100%;
-	vertical-align: middle;
-}
-#dialogue #headshot img {
+
+#headshot img {
 	max-width: 100%; 
 	min-width: 50%; 
 	min-height: 100%;
@@ -31,11 +26,18 @@
 	top:0%;
 	right:1%;
 	}
-#dialogue #infoBox {position: absolute; width: 48%; height: 49%; top: 50%;
+#infoBox {position: absolute; width: 48%; height: 49%; top: 50%;
 					 overflow-wrap: break-word;
-					text-align: center; overflow-y: scroll;}
-#dialogue #selectBox {position: absolute; width: 50%; height: 100%; left: 50%;
-					 overflow-wrap: break-word;}
+					text-align: center; color:var(--blue);}
+
+.helper {display: inline-block; height:100%; width:0; vertical-align: middle};
+#infoBoxGif {vertical-align: middle;}
+
+#infoBoxClose {position: absolute; bottom: 0; right:0;}
+
+#selectBox {position: absolute; width: 50%; height: 100%; left: 50%;
+					 overflow-wrap: break-word; text-align: center;}
+.selectChoice {position: relative; margin-top: 20%;}
 
 #console {right: 0%; height: 100%; width: 50%; border: 1px solid blue;
 		  display: none;}

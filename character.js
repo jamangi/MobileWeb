@@ -68,6 +68,11 @@ class Character {
 
 		if (this.map.barrierList[destRow+'-'+destCol]) 
 			this.done = true;
+		else{
+			let check = this.map.items[destRow+"-"+destCol];
+			if (check && check["lockune"])
+				this.done = true;
+		}
 
 
 		// 
