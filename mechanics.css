@@ -6,13 +6,15 @@
 	border: 1px solid gold;
 }
 
-#display {position: absolute; height:33%; width: 98%; border:1px solid green;
+#display {position: absolute; height:33%; width: 98%;
 		  bottom: 7%;}
 
-#dialogue {left: 0%; height: 99%; width: 49%; border: 1px solid gold;
+#dialogue {left: 0%; height: 99%; width: 49%; border: 2px solid var(--blue);
 			background: var(--purple);}
 #dialogue #headshot {position: absolute; width: 50%; height: 50%; 
-					 text-align: center; border: 1px solid orange;
+					 text-align: center; 
+					 border-right: 1px solid var(--blue);
+					 border-bottom: 1px solid var(--blue);
 					}
 #dialogue #headshot-helper {
 	display: inline-block;
@@ -29,12 +31,14 @@
 	top:0%;
 	right:1%;
 	}
-#dialogue #textBox {position: absolute; width: 48%; height: 49%; top: 50%;
-					border: 1px solid orange; overflow-wrap: break-word;
+#dialogue #infoBox {position: absolute; width: 48%; height: 49%; top: 50%;
+					 overflow-wrap: break-word;
 					text-align: center; overflow-y: scroll;}
 #dialogue #selectBox {position: absolute; width: 50%; height: 100%; left: 50%;
-					border: 1px solid orange; overflow-wrap: break-word;}
+					 overflow-wrap: break-word;}
 
-#console {right: 0%; height: 100%; width: 50%; border: 1px solid blue;}
+#console {right: 0%; height: 100%; width: 50%; border: 1px solid blue;
+		  display: none;}
 
-#scripts {right: 0%; height: 70%; width: 50%; border: 1px solid red;}
+#scripts {right: 0%; height: 70%; width: 50%; border: 1px solid red;
+		  display:none;}
