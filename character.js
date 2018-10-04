@@ -4,7 +4,7 @@ class Character {
 		this.ID = ID; 
 		this.map = map;     
 		this.row = row; 
-		this.col = col; 
+		this.col = col;
 		this.selectedRow = row; 
 		this.selectedCol = col;
 		this.facing = facing; 
