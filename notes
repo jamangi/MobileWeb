@@ -144,3 +144,18 @@ Names
 Solomon
 Miranda
 Nick
+
+###########################################################################
+
+Backend
+
+
+apt-get install python3-pip
+pip3 install flask flask_cors flask-socketio docker
+get ssl cert - https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04
+
+uwsgi 
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uswgi-and-nginx-on-ubuntu-18-04
+
+gunicorn
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04
