@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>viewer 2.0</title>
+	<title>Training</title>
 
 	<link rel="stylesheet" type="text/css" href="animations.css">
 	<link rel="stylesheet" type="text/css" href="styles.css">
@@ -59,10 +59,10 @@
 				<div id="userDefeats"></div>
 				<div id="userLocation"></div>
 				<div id="userGif">
-					<div id=userGifName>Titan</div>
+					<div id=userGifName>Goku</div>
 					<div style="height:100%">
 						<div class='helper'></div>
-						<img id="userGifGif" src="images\titan\titanSitDown.gif">
+						<img id="userGifGif" src="images\goku\gokuSitDown.gif">
 					</div>
 					<div id="userGifClose">close</div>
 				</div>
@@ -83,7 +83,53 @@
 			let user = makeTitan(map, 0, 0);
 			let controller = new Controller(user);
 			let lockune = new Lockune(user);
-			
+			user.toGhost();
+			user.update(user.row, user.col);
+
+			let tonyID="miranda_"+this.titanCount,
+			imgFolder="images/people/sailors/miranda/", 
+			imgName="miranda",
+			imgCellWidth = 1, 
+			imgCellHeight = 1,  
+			baseSpeed=500, 
+			basePose="Still",
+			facing="Left", 
+			mode="Walk";
+			let row = 1, col = 29;
+			let myChar = new Character(tonyID, imgFolder, imgName, imgCellWidth, imgCellHeight,
+    				           row, col, basePose, facing, baseSpeed, mode, map, null);
+			myChar.pathSearch = makeSimpleSearch(myChar);
+
+			setInterval(makeSimpleLoiter("row", myChar,  5, 20));
+
+			let scarletID="scarlet_"+this.titanCount;
+			imgFolder="images/people/scarlet/", 
+			imgName="scarlet",
+			imgCellWidth = 2, 
+			imgCellHeight = 2,  
+			baseSpeed=500, 
+			basePose="Stand",
+			facing="down", 
+			mode="Walk";
+			row = 7, col = 15;
+			myChar = new Character(scarletID, imgFolder, imgName, imgCellWidth, imgCellHeight,
+    				           row, col, basePose, facing, baseSpeed, mode, map, null);
+			myChar.pathSearch = makeSimpleSearch(myChar);
+
+
+			let script = new ImageObject("box_0", .5, .5, [], "images/icons/bash.png");
+			map.addObject(script, 1,4)
+			map.addObject(script, 5,7)
+			map.addObject(script, 10, 14)
+			map.addObject(script, 6,20)
+
+			function makeScriptAdder() {
+				function adder(){
+					map.addObject(script, Math.floor(Math.random()*10), Math.floor(Math.random()*10));
+				}
+			}
+
+			setInterval(makeScriptAdder(), 20000);
 		}
 	</script>
 </body>

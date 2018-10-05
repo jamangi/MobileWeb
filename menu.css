@@ -1,0 +1,31 @@
+section {position: relative; height: 33%; border: 1px solid gold; font-size: 400%;
+text-align: center;}
+main {height: 100%;}
+a {text-decoration: none;}
+
+#lockune img, #titan img {min-width: 50%;}
+#lockune {left: 45%; top: 30%;}
+#titan {left: 35%; top: 33%;}
+#lockune, #titan {position: absolute; height:50%; width: 20%;}
+
+.script {background: url("images/icons/bash.png"); height: 10%; width: 5%;}
+.top {float:left;}
+.bot {float:right;}
+
+#leftHeadShot, #rightHeadShot {position: absolute; bottom:0;}
+#leftHeadShot {left: 0;}
+#rightHeadShot {right:0; bottom:0; border-left: 1px solid gold; border-top: 1px solid gold;}
+#leftHeadShot img, #rightHeadShot img {min-height: 30%;}
+
+.sailor {position: absolute; height: 35%; width: 20%;}
+.sailor img {min-width: 15%;}
+
+#sean, #tony {right: 0;}
+#tony {right: 10%;}
+
+#miranda {left: 50%; top:10%;}
+#capt {left: 40%; top:20%;}
+#luke {left: 30%; top: 10%;}
+
+#ruby {top: 40%; left: 10%;}
+#scarlet {top: 60%;}

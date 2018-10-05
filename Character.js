@@ -2,6 +2,9 @@ class Character {
 	constructor(ID, imgFolder, imgName, imgCellWidth, imgCellHeight,
 	            row, col, basePose, facing, baseSpeed, mode, map, search) {
 		this.ID = ID; 
+		this.originalFolder = imgFolder;
+		this.originalName = imgName;
+		this.originalBase = basePose;
 		this.map = map;     
 		this.row = row; 
 		this.col = col;
@@ -45,6 +48,12 @@ class Character {
 		img.setAttribute("src", this.imgFolder+this.imgName+this.pose+".gif"); 
 		img.setAttribute("id", this.imgId);
 
+	}
+
+	toGhost() {
+		this.imgFolder = "images/ghost/";
+		this.imgName = "ghost";
+		this.basePose = "Stand";
 	}
 
 	go(row, col){
@@ -134,9 +143,13 @@ function makeTitan(map, row, col){
 	else
 		this.titanCount = 1;
 
-	let ID="titan_"+this.titanCount,
-	imgFolder="images/titan/", 
-	imgName="titan",
+	let name = 'titan';
+	if (titanCount % 2 !== 0)
+		name = 'goku'
+
+	let ID=name+"_"+this.titanCount,
+	imgFolder="images/"+name+'/', 
+	imgName=name,
 	imgCellWidth = 1, 
 	imgCellHeight = 1,  
 	baseSpeed=250, 

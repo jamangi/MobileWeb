@@ -45,6 +45,7 @@
 
 .helper {display: inline-block; height:100%; width:0; vertical-align: middle};
 #infoBoxGif, #userGifGif {vertical-align: middle;}
+#userGifGif {max-height: 35%;}
 
 #infoBoxClose,#userGifClose {position: absolute; bottom: 0; right:0;}
 #userGifClose {left:0;}

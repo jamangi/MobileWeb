@@ -169,6 +169,10 @@ class Lockune extends Character {
 			let home = this;
 			function recover(){
 				console.log("recover selected");
+				home.user.imgFolder = home.user.originalFolder;
+				home.user.imgName = home.user.originalName;
+				home.user.basePose = home.user.originalBase;
+				home.user.update(home.user.row, home.user.col);
 			}
 			return recover;
 		}
