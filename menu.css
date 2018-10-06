@@ -3,10 +3,10 @@ text-align: center;}
 main {height: 100%;}
 a {text-decoration: none;}
 
-#lockune img, #titan img {min-width: 25%;}
+#lockune, #titan {position: absolute; height:35%; width: 20%;}
+#lockune img, #titan img {min-width: 40%;}
 #lockune {left: 45%; top: 30%;}
 #titan {left: 35%; top: 33%;}
-#lockune, #titan {position: absolute; height:35%; width: 20%;}
 
 .script {background: url("images/icons/bash.png"); height: 10%; width: 5%;}
 .top {float:left;}
