@@ -1,8 +1,9 @@
-section {position: relative; height: 33%; border: 1px solid gold; font-size: 400%;
-text-align: center;}
+section {position: relative; height: 33%; /*border: 1px solid gold;*/ font-size: 400%;
+text-align: left;}
 main {height: 100%;}
 a {text-decoration: none;}
 
+#trainingTitle {position: absolute; left: 0; top: 10%;}
 .training {position: absolute; height:35%; width: 20%;}
 .training img{min-width: 40%;}
 #ghost {left: 40%; bottom: 0;}
