@@ -3,10 +3,11 @@ text-align: center;}
 main {height: 100%;}
 a {text-decoration: none;}
 
-#lockune, #titan {position: absolute; height:35%; width: 20%;}
-#lockune img, #titan img {min-width: 40%;}
-#lockune {left: 45%; top: 30%;}
-#titan {left: 35%; top: 33%;}
+.training {position: absolute; height:35%; width: 20%;}
+.training img{min-width: 40%;}
+#ghost {left: 40%; bottom: 0;}
+#lockune {left: 45%; top: 25%;}
+#titan {left: 35%; top: 28%;}
 
 .script {background: url("images/icons/bash.png"); height: 10%; width: 5%;}
 .top {float:left;}
@@ -16,8 +17,8 @@ a {text-decoration: none;}
 .sailor img {min-width: 60%;}
 #sean img, #tony img {}
 
-#capt {left: 45%; top:20%;}
-#harold {left: 30%; top: 30%;}
+#capt {left: 45%; top:22%;}
+#harold {left: 30%; top: 35%;}
 #miranda {left: 45%; bottom:0%;}
 #sean, #tony {left: 60%; top: 30%;}
 #tony {left: 70%;}
