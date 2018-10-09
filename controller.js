@@ -7,6 +7,7 @@ class Controller {
 		this.consoleButton = document.getElementById("consoleButton");
 		this.findInterval = undefined;
 
+		this.display = document.getElementById("display");
 		this.userSelect = document.getElementById("userSelect");
 		this.userHeadshot = document.getElementById("userHeadshot");
 		this.userCollected = document.getElementById("userCollected");
@@ -105,16 +106,22 @@ class Controller {
 				that.className = "";
 				if (id === "runButton")
 					home.character.mode = "Walk";
-				if (id === "consoleButton")
+				if (id === "consoleButton"){
+					home.display.style.display = "none";
 					home.userSelect.style.display = "none";
+				}
 					
 			}
 			else{
 				that.className = "clicked";
 				if (id === "runButton")
 					home.character.mode = "Run";
-				if (id === "consoleButton")
+				if (id === "consoleButton"){
 					home.userSelect.style.display = "block";
+					home.display.style.display = "block";
+
+
+				}
 					
 			}
 		}

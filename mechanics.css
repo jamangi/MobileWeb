@@ -1,12 +1,11 @@
 .clicked img {background: var(--rose);}
 
 #display {position: absolute; height:33%; width: 98%;
-		  bottom: 7%;}
+		  bottom: 7%; display:none;}
 
 .mechanic {
 	position: absolute;
 	bottom:0;
-	border: 1px solid gold;
 	height: 99%; width: 49%;
 	border: 2px solid var(--blue);
 }
@@ -60,3 +59,11 @@
 
 #scripts {right: 0%; height: 70%; width: 50%; border: 1px solid red;
 		  display:none;}
+
+#dropScript {background: #013220;}
+#dropScriptText {
+	background: black; 
+	opacity: .2;
+	height: 100%;
+	width: 100%;
+}

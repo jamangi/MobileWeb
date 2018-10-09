@@ -27,6 +27,7 @@ class Lockune extends Character {
 
 		// relavant html elements
 		this.charDiv = document.getElementById(this.ID);
+		this.display = document.getElementById("display");
 		this.dialogueDiv = document.getElementById("dialogue");
 		this.headshotImg = document.getElementById("headshotImg");
 		this.selectBox = document.getElementById("selectBox");
@@ -97,6 +98,7 @@ class Lockune extends Character {
 			function close(){ 
 				// would need to undo positional functions
 				// or set context
+				home.display.style.display = "none";
 				home.functionIndex = 0;
 				home.textIndex = 0;
 				home.hide();
@@ -121,6 +123,7 @@ class Lockune extends Character {
 		makeOpen() {
 			let home = this;
 			function open(){ //might check context to decide expression
+				home.display.style.display = "block";
 				home.headshotImg.setAttribute("src", home.expression);
 				home.dialogueDiv.style.display = "block";
 				if (home.functions[home.context][home.functionIndex][0] === "menu")

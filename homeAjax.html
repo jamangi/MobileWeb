@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Training</title>
+
+	<link rel="stylesheet" type="text/css" href="animations.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="mechanics.css">
+
+	<script type="text/javascript" src="helpers.js"></script>
+	<script type="text/javascript" src="Character.js"></script>
+	<script type="text/javascript" src="map.js"></script>
+	<script type="text/javascript" src="props.js"></script>
+	<script type="text/javascript" src="controller.js"></script>
+	<script type="text/javascript" src="display.js"></script>
+	<script type="text/javascript" src="Lockune.js"></script>
+</head>
+<body>
+	<main>
+		<article id="gamebox">
+			<article id="map">
+			</article>
+		</article>
+		<section id="display">
+			<div class="mechanic" id="dropScript">
+				<textarea id="dropScriptText">
+					test
+				</textarea>
+				<div id="dropScriptMaterial"><span class="gray">#</span></div>
+			</div>
+			<div class="mechanic" id="dialogue">
+				<div id="headshot">
+					<!-- <div id='headshot-helper'></div> -->
+					<img id="headshotImg" src="images\people\lockune\lockuneSmileSmall.png">
+				</div>
+				<div id="infoBox">
+					<div id=infoBoxName>Lockune</div>
+					<div style="height:100%">
+						<div class='helper'></div>
+						<img id="infoBoxGif" src="images\people\lockune\lockuneStandDown.gif">
+					</div>
+					<div id="infoBoxClose">close</div>
+				</div>
+				<div id="selectBox"></div>
+			</div>
+			<div class="mechanic right" id="drop">
+				<div id="dropText"></div>
+				<div id="dropConfirm"></div>
+				<div id="testConfirm"></div>
+				<div id="dropCost">cost: <span></span><img></div>
+			</div>
+			<div class="mechanic right" id="collect">
+				<div id="collectConfirm"></div>
+				<div id="collectClose"></div>
+				<div id="collectText"></div>
+				<div id="collectValue"></div>
+			</div>
+			<div class="mechanic right" id="userSelect">
+				<div id="userHeadshot">
+					<!-- <div id='headshot-helper'></div> -->
+					<img id="userHeadshotImg" src="images\dog\shibaFace.png">
+				</div>
+				<div id="userCollected"></div>
+				<div id="userDefeats"></div>
+				<div id="userLocation"></div>
+				<div id="userGif">
+					<div id=userGifName>Goku</div>
+					<div style="height:100%">
+						<div class='helper'></div>
+						<img id="userGifGif" src="images\goku\gokuSitDown.gif">
+					</div>
+					<div id="userGifClose">close</div>
+				</div>
+			</div>
+		</section>
+		<footer>
+			<div id="materialButton" unselectable="on"><img src="images/icons/material.png"></div>
+			<div id="consoleButton" unselectable="on"><img src="images/icons/hero.png"></div>
+			<div id="runButton" unselectable="on"><img src="images/icons/run.png"></div>
+			<div id="findButton" unselectable="on"><img src="images/icons/magnify.png"></div>
+		</footer>
+	</main>
+	<script id="characterTest" type="text/javascript">
+		window.onload = function() {
+			
+			let map = makeSeaHorse();
+			loiterers(map, 4, 22);
+			let user = makeTitan(map, 0, 0);
+			let controller = new Controller(user);
+			let lockune = new Lockune(user);
+			user.toGhost();
+			user.update(user.row, user.col);
+
+			let tonyID="miranda_"+this.titanCount,
+			imgFolder="images/people/sailors/miranda/", 
+			imgName="miranda",
+			imgCellWidth = 1, 
+			imgCellHeight = 1,  
+			baseSpeed=500, 
+			basePose="Still",
+			facing="Left", 
+			mode="Walk";
+			let row = 1, col = 29;
+			let myChar = new Character(tonyID, imgFolder, imgName, imgCellWidth, imgCellHeight,
+    				           row, col, basePose, facing, baseSpeed, mode, map, null);
+			myChar.pathSearch = makeSimpleSearch(myChar);
+
+			setInterval(makeSimpleLoiter("row", myChar,  5, 20));
+
+			let scarletID="scarlet_"+this.titanCount;
+			imgFolder="images/people/scarlet/", 
+			imgName="scarlet",
+			imgCellWidth = 2, 
+			imgCellHeight = 2,  
+			baseSpeed=500, 
+			basePose="Stand",
+			facing="Down", 
+			mode="Walk";
+			row = 7, col = 15;
+			myChar = new Character(scarletID, imgFolder, imgName, imgCellWidth, imgCellHeight,
+    				           row, col, basePose, facing, baseSpeed, mode, map, null);
+			myChar.pathSearch = makeSimpleSearch(myChar);
+
+
+			let script = new ImageObject("box_0", .5, .5, [], "images/icons/bash.png");
+			map.addObject(script, 1,4)
+			map.addObject(script, 5,7)
+			map.addObject(script, 10, 14)
+			map.addObject(script, 6,20)
+
+			function makeScriptAdder() {
+				function adder(){
+					map.addObject(script, Math.floor(Math.random()*10), Math.floor(Math.random()*10));
+				}
+			}
+
+			setInterval(makeScriptAdder(), 20000);
+		}
+	</script>
+</body>
+</html>
