@@ -23,6 +23,9 @@
 			</article>
 		</article>
 		<section id="display">
+			
+
+			<!-- Dialogue -->
 			<div class="mechanic" id="dialogue">
 				<div id="headshot">
 					<!-- <div id='headshot-helper'></div> -->
@@ -38,26 +41,28 @@
 				</div>
 				<div id="selectBox"></div>
 			</div>
-			<div class="mechanic right" id="drop">
-				<div id="dropText"></div>
-				<div id="dropConfirm"></div>
-				<div id="testConfirm"></div>
-				<div id="dropCost">cost: <span></span><img></div>
+
+			<div class="mechanic right" id="dialogueVisual">
 			</div>
-			<div class="mechanic right" id="collect">
-				<div id="collectConfirm"></div>
-				<div id="collectClose"></div>
-				<div id="collectText"></div>
-				<div id="collectValue"></div>
+			<!--  -->
+
+			<!-- Scripts -->
+			<div class="mechanic" id="scriptDiv">
+				<form>
+					<textarea id="dropScriptText" spellcheck="false"></textarea>
+					<textarea id="collectScriptText" spellcheck="false" disabled></textarea>
+				</form>	
+				<div id="dropScriptMaterial">
+					<span id="dropAmount">0</span>
+					<img src="images/icons/material.gif">
+				</div>
 			</div>
+
 			<div class="mechanic right" id="userSelect">
 				<div id="userHeadshot">
 					<!-- <div id='headshot-helper'></div> -->
 					<img id="userHeadshotImg" src="images\dog\shibaFace.png">
 				</div>
-				<div id="userCollected"></div>
-				<div id="userDefeats"></div>
-				<div id="userLocation"></div>
 				<div id="userGif">
 					<div id=userGifName>Goku</div>
 					<div style="height:100%">
@@ -66,7 +71,19 @@
 					</div>
 					<div id="userGifClose">close</div>
 				</div>
+				<div id ="userSelectBox">
+					<div id="aButton"> <span id="aButtonText">Drop</span>
+						<div class='helper'></div>
+						<img src="images/icons/bash.png">
+					</div>
+					<div id="bButton"><span id="bButtonText">Test</span>
+						<div class='helper'></div>
+						<img src="images/icons/gear.png">
+					</div>
+				</div>
 			</div>
+			<!--  -->
+			
 		</section>
 		<footer>
 			<div id="materialButton" unselectable="on"><img src="images/icons/material.png"></div>
@@ -82,6 +99,7 @@
 			loiterers(map, 4, 22);
 			let user = makeTitan(map, 0, 0);
 			let controller = new Controller(user);
+			let display = new Display(user);
 			let lockune = new Lockune(user);
 			user.toGhost();
 			user.update(user.row, user.col);

@@ -16,6 +16,8 @@ class Controller {
 		this.userGifGif = document.getElementById("userGifGif");
 		this.userGifClose = document.getElementById("userGifClose");
 
+		this.aButton = document.getElementById("aButton");
+		this.bButton = document.getElementById("bButton");
 
 		this.materialButton = document.getElementById("materialButton");
 		this.map = char.map;
@@ -31,7 +33,7 @@ class Controller {
 		this.findButton.addEventListener("click", this.makeFind());
 
 		this.consoleButton.addEventListener("click", this.makeToggle());
-		this.userGifClose.addEventListener("click", this.makeToggle());
+		this.userGif.addEventListener("click", this.makeToggle());
 		this.materialButton.addEventListener("click", this.makeToggle());
 
 		this.userSelect.style.display = 'none';
@@ -78,8 +80,6 @@ class Controller {
 
 	find(char, home){
 		let midpoint = [];
-		
-
 		let left = home.character.left - home.midpoint[0];
 		let top = home.character.top - home.midpoint[1];
 		home.gb.scrollTo(left, top)
@@ -91,7 +91,7 @@ class Controller {
 		function toggle() {
 			let id = this.getAttribute("id")
 			let that = this;
-			if (id === "userGifClose"){
+			if (id === "userGif"){
 				id = "consoleButton";
 				that = home.consoleButton;
 			}
