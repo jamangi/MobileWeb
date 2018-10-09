@@ -98,7 +98,6 @@ class Lockune extends Character {
 			function close(){ 
 				// would need to undo positional functions
 				// or set context
-				home.display.style.display = "none";
 				home.functionIndex = 0;
 				home.textIndex = 0;
 				home.hide();
@@ -107,7 +106,10 @@ class Lockune extends Character {
 		}
 		makeHide(){
 			let home = this;
-			function hide(){home.dialogueDiv.style.display = "none";}
+			function hide(){
+				home.dialogueDiv.style.display = "none";
+				home.display.style.display = "none";
+			}
 			return hide;
 		}
 		makeToggle(){
