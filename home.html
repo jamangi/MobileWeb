@@ -114,9 +114,9 @@
 			}
 			catch (err) {
 				console.log("caught")
-				document.getElementById("debugError").innerHTML = err.message;
+				log(err.name + ": "+err.message);
 			}
-
+			showLogs()
 
 			let lockune = new Lockune(user);
 			user.toGhost();
