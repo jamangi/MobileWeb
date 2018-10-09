@@ -114,7 +114,7 @@
 			}
 			catch (err) {
 				console.log("caught")
-				document.getElementById("debugError").innerHTML = err;
+				log(err.name + ": "err.message);
 			}
 			showLogs()
 
