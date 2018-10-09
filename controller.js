@@ -5,7 +5,13 @@ class Controller {
 		this.runButton = document.getElementById("runButton");
 		this.findButton = document.getElementById("findButton");
 		this.consoleButton = document.getElementById("consoleButton");
-		this.findInterval = undefined;
+
+		this.filename = document.getElementById("filename");
+		this.dropScriptText = document.getElementById("dropScriptText");
+		this.dropAmount = document.getElementById("dropAmount");
+
+		this.collectScriptText = document.getElementById("collectScriptText");
+
 
 		this.display = document.getElementById("display");
 		this.userSelect = document.getElementById("userSelect");
@@ -17,7 +23,11 @@ class Controller {
 		this.userGifClose = document.getElementById("userGifClose");
 
 		this.aButton = document.getElementById("aButton");
+		this.aButtonText = document.getElementById("aButtonText");
+		this.aButtonImg = document.getElementById("aButtonImg");
 		this.bButton = document.getElementById("bButton");
+		this.bButtonText = document.getElementById("bButtonText");
+		this.bButtonImg = document.getElementById("bButtonImg");
 
 		this.materialButton = document.getElementById("materialButton");
 		this.map = char.map;
@@ -25,6 +35,7 @@ class Controller {
 		this.selectedImageObject = undefined;
 		this.selectedDiv = undefined;
 
+		this.populateTest = this.makePopulateTest();
 
 		this.gb.addEventListener("click", this.makeClickListener());
 
@@ -44,7 +55,34 @@ class Controller {
 		this.midpoint[0] = Math.floor(this.gb.offsetWidth / 2);
 		this.midpoint[1] = Math.floor(this.gb.offsetHeight / 2);
 
+		this.aButton.addEventListener("click", this.makeAjaxClick());
+		this.bButton.addEventListener("click", this.makeAjaxClick());
 
+
+	}
+
+	makeAjaxClick(){
+		let home = this;
+		function ajaxClick(){
+			let id = this.getAttribute('id')
+			let eleText = home[id + "Text"], eleImg = home[id + "Img"];
+			let func = eleText.innerHTML.toLowerCase();
+			let input = {"filename": home.filename.value, 
+						 "filetext": home.dropScriptText.value,
+						 "row": home.character.row, 
+						 "col": home.character.col};
+			let callback = home.populateTest;
+
+			if (func === "drop")
+				callback = function(){}
+			else if (func === "collect"){
+				input["filetext"] = home.collectScriptText.value;
+				callback = function() {}
+			}
+
+			ajaxRequest(func, input, callback);
+		}
+		return ajaxClick;
 	}
 
 	makeClickListener() {
@@ -115,11 +153,46 @@ class Controller {
 		return toggle;
 	}
 
-	drop(){
-		let filename;
-		let filetext;
-		let row, col;
+	makeTest() {
+		home = this;
+		function test(){
+			// ajax with callback home.populateTest
+			let input = {"filename": home.filename, "filetest": home.filetext,
+						 "row": home.charrow, "col": home.charcol};
+			ajaxRequest("test", input, home.populateTest);
+		}
 	}
 
-	collect(){}
+	makePopulateTest(){
+		let home = this;
+		function populateTest(fileObj) {
+			home.dropAmount.innerHTML = fileObj.material;
+		}
+		return populateTest;
+	}
+
+	makeDrop(){
+		home = this;
+		function drop(){
+			let filename = home.filename;
+			let filetext = home.filetext;
+			let row = home.char.row, col = home.char.col;
+			let input = {"filename": filename, "filetest": filetext,
+						 "row": row, "col": col};
+			ajaxRequest("test", input, home.placeFile);
+			// ajax with callback placeFile
+		}
+		return drop;
+	}
+
+	placeFile(fileObj){
+
+	}
+
+	makeCollect(){
+		home = this;
+		function collect(){}
+		return collect;
+	}
+	populateCollect(){}
 }

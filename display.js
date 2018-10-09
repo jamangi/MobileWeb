@@ -64,4 +64,5 @@ class Display {
 		for (let ele of clicked)
 			ele.className = "";
 	}
+
 }

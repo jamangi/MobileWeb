@@ -60,7 +60,7 @@
 					 overflow-wrap: break-word; text-align: center; color: var(--white);}
 #userSelectBox {left: 0%;}
 #aButton,#bButton {position: absolute; width: 100%; height: 50%;
-					text-align: center; color:var(--white);}
+					text-align: center; color:var(--white);  cursor: pointer;}
 #aButton img, #bButton img {max-height: 25%;}
 
 

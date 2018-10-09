@@ -52,7 +52,9 @@
 					<textarea id="dropScriptText" spellcheck="false"></textarea>
 					<textarea id="collectScriptText" spellcheck="false" disabled></textarea>
 				</form>	
-				<input id="filename" type="text" placeholder="filename">
+				<input id="filename" type="text" 
+						placeholder="filename" spellcheck="false"
+						autocomplete="off">
 				<div id="dropScriptMaterial">
 					<span id="dropAmount">0</span>
 					<img src="images/icons/material.gif">
@@ -73,13 +75,15 @@
 					<div id="userGifClose">close</div>
 				</div>
 				<div id ="userSelectBox">
-					<div id="aButton"> <span id="aButtonText">Drop</span>
+					<div id="aButton">
+						<span id="aButtonText">Drop</span>
 						<div class='helper'></div>
-						<img src="images/icons/bash.png">
+						<img id='aButtonImg' src="images/icons/bash.png">
 					</div>
-					<div id="bButton"><span id="bButtonText">Test</span>
+					<div id="bButton">
+						<span id="bButtonText">Test</span>
 						<div class='helper'></div>
-						<img src="images/icons/gear.png">
+						<img id='bButtonImg' src="images/icons/gear.png">
 					</div>
 				</div>
 			</div>

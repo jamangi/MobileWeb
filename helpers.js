@@ -9,11 +9,21 @@ function check(map, row, col){
 	return map.barrierList[row +'-'+col] === undefined;
 }
 
-class Node {
-	constructor(map, row, col) {
-		this.map = map, this.row = row, this.col = col;
-		if (this.map.search === undefined)
-			this.map.search = []
+function ajaxRequest(endpoint, input, callback){
+	let service = "http://localhost:9090/"+endpoint;
+	console.log(service);
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", service, true);
+	xhr.setRequestHeader("Content-Type", "application/json");
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+        	let json = JSON.parse(xhr.responseText);
+        	console.log("returned: "+json);
+        	callback(json);
+    	}
 	}
-	mark(){this.map.search[row][col] = true;}
+	let data = JSON.stringify(input);
+	console.log("data to send: "+data);
+	xhr.send(data);
+
 }
