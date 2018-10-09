@@ -7,7 +7,7 @@
 	position: absolute;
 	bottom:0;
 	height: 99%; width: 49%;
-	border: 2px solid var(--blue);
+	border: 3px solid var(--blue);
 }
 
 
@@ -60,10 +60,27 @@
 #scripts {right: 0%; height: 70%; width: 50%; border: 1px solid red;
 		  display:none;}
 
-#dropScript {background: #013220;}
-#dropScriptText {
-	background: black; 
-	opacity: .2;
+#scriptDiv {background: #013220;}
+#scriptDiv form {
+	background: none;
 	height: 100%;
 	width: 100%;
+}
+#dropScriptText, #collectScriptText {
+	padding: 10px;
+	color: white;
+	background: black; 
+	opacity: .5;
+	height: 100%;
+	width: 100%;
+	border-radius: 0%;
+	display:none;
+}
+#collectScriptText {
+	color: black;
+	background: white; 
+	height: 100%;
+	width: 100%;
+	border-radius: 0%;
+	display:block;
 }

@@ -10,17 +10,12 @@ class Controller {
 		this.display = document.getElementById("display");
 		this.userSelect = document.getElementById("userSelect");
 		this.userHeadshot = document.getElementById("userHeadshot");
-		this.userCollected = document.getElementById("userCollected");
-		this.userDefeats = document.getElementById("userDefeats");
-		this.userLocation = document.getElementById("userLocation");
 
 		this.userGif = document.getElementById("userGif");
 		this.userGifName = document.getElementById("userGifName");
 		this.userGifGif = document.getElementById("userGifGif");
 		this.userGifClose = document.getElementById("userGifClose");
 
-		this.collectDiv = document.getElementById("collect");
-		this.dropDiv = document.getElementById("drop");
 
 		this.materialButton = document.getElementById("materialButton");
 		this.map = char.map;
@@ -40,8 +35,6 @@ class Controller {
 		this.materialButton.addEventListener("click", this.makeToggle());
 
 		this.userSelect.style.display = 'none';
-		this.dropDiv.style.display = 'none';
-		this.collectDiv.style.display = 'none';
 
 		this.scrollToLeft = 0;
 		this.scrollToTop = 0;
@@ -95,7 +88,7 @@ class Controller {
 
 	makeToggle() {
 		let home = this;
-		function processClick() {
+		function toggle() {
 			let id = this.getAttribute("id")
 			let that = this;
 			if (id === "userGifClose"){
@@ -106,25 +99,19 @@ class Controller {
 				that.className = "";
 				if (id === "runButton")
 					home.character.mode = "Walk";
-				if (id === "consoleButton"){
-					home.display.style.display = "none";
-					home.userSelect.style.display = "none";
-				}
-					
+				else
+					home.display.display.off();	
 			}
 			else{
-				that.className = "clicked";
 				if (id === "runButton")
 					home.character.mode = "Run";
-				if (id === "consoleButton"){
-					home.userSelect.style.display = "block";
-					home.display.style.display = "block";
+				if (id === "consoleButton")
+					home.display.display.on("drop");
 
-
-				}
+				that.className = "clicked";
 					
 			}
 		}
-		return processClick;
+		return toggle;
 	}
 }

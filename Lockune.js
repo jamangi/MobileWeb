@@ -86,6 +86,7 @@ class Lockune extends Character {
 		nextFunction(){
 			this.functionIndex++;
 			if (this.functionIndex >= this.functions[this.context].length){
+				this.functionIndex = 0;
 				if (this.objective === "roam")
 					this.menu()
 				else
@@ -101,14 +102,14 @@ class Lockune extends Character {
 				home.functionIndex = 0;
 				home.textIndex = 0;
 				home.hide();
+
 			}
 			return close;
 		}
 		makeHide(){
 			let home = this;
 			function hide(){
-				home.dialogueDiv.style.display = "none";
-				home.display.style.display = "none";
+				home.display.display.off();
 			}
 			return hide;
 		}
@@ -124,10 +125,9 @@ class Lockune extends Character {
 		}
 		makeOpen() {
 			let home = this;
-			function open(){ //might check context to decide expression
-				home.display.style.display = "block";
+			function open(){
+				home.display.display.toggle("dialogue")
 				home.headshotImg.setAttribute("src", home.expression);
-				home.dialogueDiv.style.display = "block";
 				if (home.functions[home.context][home.functionIndex][0] === "menu")
 					home.execute();
 			}

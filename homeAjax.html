@@ -23,12 +23,9 @@
 			</article>
 		</article>
 		<section id="display">
-			<div class="mechanic" id="dropScript">
-				<textarea id="dropScriptText">
-					test
-				</textarea>
-				<div id="dropScriptMaterial"><span class="gray">#</span></div>
-			</div>
+			
+
+			<!-- Dialogue -->
 			<div class="mechanic" id="dialogue">
 				<div id="headshot">
 					<!-- <div id='headshot-helper'></div> -->
@@ -44,26 +41,25 @@
 				</div>
 				<div id="selectBox"></div>
 			</div>
-			<div class="mechanic right" id="drop">
-				<div id="dropText"></div>
-				<div id="dropConfirm"></div>
-				<div id="testConfirm"></div>
-				<div id="dropCost">cost: <span></span><img></div>
+
+			<div class="mechanic right" id="dialogueVisual">
 			</div>
-			<div class="mechanic right" id="collect">
-				<div id="collectConfirm"></div>
-				<div id="collectClose"></div>
-				<div id="collectText"></div>
-				<div id="collectValue"></div>
+			<!--  -->
+
+			<!-- Scripts -->
+			<div class="mechanic" id="scriptDiv">
+				<form>
+					<textarea id="dropScriptText" spellcheck="false"></textarea>
+					<textarea id="collectScriptText" spellcheck="false" disabled></textarea>
+				</form>	
+				<div id="dropScriptMaterial"><span class="gray">#</span></div>
 			</div>
+
 			<div class="mechanic right" id="userSelect">
 				<div id="userHeadshot">
 					<!-- <div id='headshot-helper'></div> -->
 					<img id="userHeadshotImg" src="images\dog\shibaFace.png">
 				</div>
-				<div id="userCollected"></div>
-				<div id="userDefeats"></div>
-				<div id="userLocation"></div>
 				<div id="userGif">
 					<div id=userGifName>Goku</div>
 					<div style="height:100%">
@@ -73,6 +69,8 @@
 					<div id="userGifClose">close</div>
 				</div>
 			</div>
+			<!--  -->
+			
 		</section>
 		<footer>
 			<div id="materialButton" unselectable="on"><img src="images/icons/material.png"></div>
@@ -88,6 +86,7 @@
 			loiterers(map, 4, 22);
 			let user = makeTitan(map, 0, 0);
 			let controller = new Controller(user);
+			let display = new Display(user);
 			let lockune = new Lockune(user);
 			user.toGhost();
 			user.update(user.row, user.col);
