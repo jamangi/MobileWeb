@@ -27,3 +27,33 @@ function ajaxRequest(endpoint, input, callback){
 	xhr.send(data);
 
 }
+
+class HeartDebugger {
+	constructor(){
+		this.debugMode = true;
+		this._log = [];
+		this.footer = document.getElementById("debugError");
+	}
+
+	log(msg) {this._log.push(msg)}
+
+	showLogs() {
+		if (!this.debugMode)
+			return
+		this.footer.innerHTML = 'Debug';
+		for (let msg of this._log)
+			this.footer.innerHTML += " - "+msg;
+	}
+}
+
+function log(msg) {
+	if (window.heartDebugger === undefined)
+		window.heartDebugger = new HeartDebugger();
+	heartDebugger.log(msg); 
+}
+
+function showLogs() {
+	heartDebugger.showLogs();
+}
+
+

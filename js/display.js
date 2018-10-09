@@ -37,6 +37,7 @@ class Display {
 	}
 
 	off(){
+		log("dsplay:off")
 		this.unset();
 	}
 
@@ -54,13 +55,16 @@ class Display {
 	}
 
 	unset(){
+		log("display:unset")
 		for (let block of this.components)
 			block.style.display = "none";
 		this.unclick();
 	}
 
 	unclick(){
+		log("display:unclick")
 		let clicked = document.getElementsByClassName("clicked");
+		log("display:clicked: "+clicked);
 		if (clicked)
 			for (let ele of clicked)
 				ele.className = "";
