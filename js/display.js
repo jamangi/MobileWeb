@@ -63,7 +63,7 @@ class Display {
 
 	unclick(){
 		log("display:unclick")
-		let clicked = document.getElementsByClassName("clicked");
+		let clicked = Array.from(document.getElementsByClassName("clicked"));
 		log("display:clicked: "+clicked);
 		if (clicked)
 			for (let ele of clicked)
