@@ -61,8 +61,9 @@ class Display {
 
 	unclick(){
 		let clicked = document.getElementsByClassName("clicked");
-		for (let ele of clicked)
-			ele.className = "";
+		if (clicked)
+			for (let ele of clicked)
+				ele.className = "";
 	}
 
 }
