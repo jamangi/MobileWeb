@@ -114,4 +114,12 @@ class Controller {
 		}
 		return toggle;
 	}
+
+	drop(){
+		let filename;
+		let filetext;
+		let row, col;
+	}
+
+	collect(){}
 }

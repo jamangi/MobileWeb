@@ -13,28 +13,35 @@
 
 #dialogue {left: 0%; background: var(--purple);}
 .right {right:0; background: var(--rose);}
-#headshot,#userHeadshot {position: absolute; width: 50%; height: 50%; 
-					 text-align: center; 
-					 border-right: 1px solid var(--blue);
-					 border-bottom: 1px solid var(--blue);
-					}
-#userHeadshot {right:0; border-left: 1px solid var(--blue); border-right: none;}
+#headshot,#userHeadshot {
+	position: absolute; 
+	width: 50%; height: 40%; 
+	text-align: center; 
+	border-right: 1px solid var(--blue);
+	border-bottom: 1px solid var(--blue);
+}
+#userHeadshot {
+	right:0; 
+	border-left: 1px solid var(--blue); 
+	border-right: none;
+
+}
 #headshot img {
 	max-width: 100%; 
-	min-width: 50%; 
-	min-height: 100%;
+	/*min-width: 50%; */
+	/*min-height: 100%;*/
 	max-height: 100%;
 	position: absolute; 
-	top:0%;
-	right:1%;
-	}
+	bottom:0%;
+	left:0%;
+}
 #userHeadshot img {
 	max-width: 100%; 
-	min-width: 50%; 
-	min-height: 100%;
+	/*min-width: 50%; */
+	/*min-height: 100%;*/
 	max-height: 100%;
 	position: absolute; 
-	top:0%;
+	bottom:0%;
 	right:1%;
 }
 #infoBox, #userGif {position: absolute; width: 48%; height: 49%; top: 50%;
@@ -117,4 +124,14 @@
 	position:absolute;
 	right: 105%;
 	bottom:0;
+}
+#filename {
+	padding-left: 5px;
+	box-sizing: border-box;
+	position: absolute;
+	left: 3%;
+	bottom: 3%;
+	width:50%;
+	border-radius: 5%;
+	max-height: 15%;
 }
