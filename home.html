@@ -4,17 +4,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Training</title>
 
-	<link rel="stylesheet" type="text/css" href="animations.css">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<link rel="stylesheet" type="text/css" href="mechanics.css">
+	<link rel="stylesheet" type="text/css" href="css/animations.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="css/mechanics.css">
 
-	<script type="text/javascript" src="helpers.js"></script>
-	<script type="text/javascript" src="Character.js"></script>
-	<script type="text/javascript" src="map.js"></script>
-	<script type="text/javascript" src="props.js"></script>
-	<script type="text/javascript" src="controller.js"></script>
-	<script type="text/javascript" src="display.js"></script>
-	<script type="text/javascript" src="Lockune.js"></script>
+	<script type="text/javascript" src="js/helpers.js"></script>
+	<script type="text/javascript" src="js/Character.js"></script>
+	<script type="text/javascript" src="js/map.js"></script>
+	<script type="text/javascript" src="js/props.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+	<script type="text/javascript" src="js/display.js"></script>
+	<script type="text/javascript" src="js/Lockune.js"></script>
 </head>
 <body>
 	<main>
@@ -52,7 +52,9 @@
 					<textarea id="dropScriptText" spellcheck="false"></textarea>
 					<textarea id="collectScriptText" spellcheck="false" disabled></textarea>
 				</form>	
-				<input id="filename" type="text" placeholder="filename">
+				<input id="filename" type="text" 
+						placeholder="filename" spellcheck="false"
+						autocomplete="off">
 				<div id="dropScriptMaterial">
 					<span id="dropAmount">0</span>
 					<img src="images/icons/material.gif">
@@ -73,13 +75,15 @@
 					<div id="userGifClose">close</div>
 				</div>
 				<div id ="userSelectBox">
-					<div id="aButton"> <span id="aButtonText">Drop</span>
+					<div id="aButton">
+						<span id="aButtonText">Drop</span>
 						<div class='helper'></div>
-						<img src="images/icons/bash.png">
+						<img id='aButtonImg' src="images/icons/bash.png">
 					</div>
-					<div id="bButton"><span id="bButtonText">Test</span>
+					<div id="bButton">
+						<span id="bButtonText">Test</span>
 						<div class='helper'></div>
-						<img src="images/icons/gear.png">
+						<img id='bButtonImg' src="images/icons/gear.png">
 					</div>
 				</div>
 			</div>
@@ -87,6 +91,9 @@
 			
 		</section>
 		<footer>
+			<div id="debugger">
+				<div id="debugError"></div>
+			</div>
 			<div id="materialButton" unselectable="on"><img src="images/icons/material.png"></div>
 			<div id="consoleButton" unselectable="on"><img src="images/icons/hero.png"></div>
 			<div id="runButton" unselectable="on"><img src="images/icons/run.png"></div>
@@ -100,7 +107,17 @@
 			loiterers(map, 4, 22);
 			let user = makeTitan(map, 0, 0);
 			let controller = new Controller(user);
-			let display = new Display(user);
+			let display;
+			try {
+				console.log("trying")
+				display = new Display(user);
+			}
+			catch (err) {
+				console.log("caught")
+				document.getElementById("debugError").innerHTML = err.message;
+			}
+
+
 			let lockune = new Lockune(user);
 			user.toGhost();
 			user.update(user.row, user.col);
@@ -142,13 +159,6 @@
 			map.addObject(script, 10, 14)
 			map.addObject(script, 6,20)
 
-			function makeScriptAdder() {
-				function adder(){
-					map.addObject(script, Math.floor(Math.random()*10), Math.floor(Math.random()*10));
-				}
-			}
-
-			setInterval(makeScriptAdder(), 20000);
 		}
 	</script>
 </body>
