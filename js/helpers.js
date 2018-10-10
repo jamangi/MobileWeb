@@ -10,7 +10,7 @@ function check(map, row, col){
 }
 
 function ajaxRequest(endpoint, input, callback){
-	let service = "http://localhost:9090/"+endpoint;
+	let service = "https://dhv3.pw/"+endpoint;
 	console.log(service);
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", service, true);
