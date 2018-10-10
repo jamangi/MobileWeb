@@ -167,6 +167,7 @@ class Controller {
 		let home = this;
 		function populateTest(fileObj) {
 			home.dropAmount.innerHTML = fileObj.material;
+			log(fileObj.material)
 		}
 		return populateTest;
 	}

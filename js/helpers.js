@@ -18,7 +18,7 @@ function ajaxRequest(endpoint, input, callback){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status === 200) {
         	let json = JSON.parse(xhr.responseText);
-        	console.log("returned: "+json);
+        	console.log("returned: "+json.material);
         	callback(json);
     	}
 	}
