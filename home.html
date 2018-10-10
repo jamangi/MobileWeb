@@ -128,7 +128,7 @@
 			imgName="miranda",
 			imgCellWidth = 1, 
 			imgCellHeight = 1,  
-			baseSpeed=500, 
+			baseSpeed=1500, 
 			basePose="Still",
 			facing="Left", 
 			mode="Walk";
@@ -139,27 +139,27 @@
 
 			setInterval(makeSimpleLoiter("row", myChar,  5, 20));
 
-			let scarletID="scarlet_"+this.titanCount;
-			imgFolder="images/people/scarlet/", 
-			imgName="scarlet",
-			imgCellWidth = 2, 
-			imgCellHeight = 2,  
-			baseSpeed=500, 
-			basePose="Stand",
-			facing="Down", 
-			mode="Walk";
-			row = 7, col = 15;
-			myChar = new Character(scarletID, imgFolder, imgName, imgCellWidth, imgCellHeight,
-    				           row, col, basePose, facing, baseSpeed, mode, map, null);
-			myChar.pathSearch = makeSimpleSearch(myChar);
+			// let scarletID="scarlet_"+this.titanCount;
+			// imgFolder="images/people/scarlet/", 
+			// imgName="scarlet",
+			// imgCellWidth = 2, 
+			// imgCellHeight = 2,  
+			// baseSpeed=500, 
+			// basePose="Stand",
+			// facing="Down", 
+			// mode="Walk";
+			// row = 7, col = 15;
+			// myChar = new Character(scarletID, imgFolder, imgName, imgCellWidth, imgCellHeight,
+   //  				           row, col, basePose, facing, baseSpeed, mode, map, null);
+			// myChar.pathSearch = makeSimpleSearch(myChar);
 
 
 			let script = new ImageObject("box_0", .5, .5, [], "images/icons/bash.png");
 			script.zOffset = -1;
 			map.addObject(script, 1,4)
 			map.addObject(script, 5,7)
-			map.addObject(script, 10, 14)
-			map.addObject(script, 6,20)
+			// map.addObject(script, 10, 14)
+			// map.addObject(script, 6,20)
 
 		}
 	</script>
