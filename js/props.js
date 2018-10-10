@@ -4,6 +4,7 @@ function loiterers(map, row, col){
 	let cbot = {ID: "cabinetBottom_0", objWidth: 2, objHeight: 1, barrierList: [[0,0],[0,1]], 
 			 img: "images/map/material/cabinet_bottom.png"}
 	let cabinetTop = new ImageObject(ctop.ID, ctop.objWidth, ctop.objHeight, ctop.barrierList, ctop.img);
+	cabinetTop.zOffset = 1;
 	let cabinetBot = new ImageObject(cbot.ID, cbot.objWidth, cbot.objHeight, cbot.barrierList, cbot.img);
 	map.addObject(cabinetTop, row, col);
 	map.addObject(cabinetBot, row + 1, col);

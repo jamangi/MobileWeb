@@ -38,7 +38,7 @@ class Map {
 				  this.cellSize * imgObj.objHeight);
 		imgDiv.setAttribute("class", "object");
 		imgDiv.setAttribute("id", imgObj.ID);
-		imgDiv.style['z-index'] = row+1;
+		imgDiv.style['z-index'] = row+imgObj.zOffset;
 
 		let img = document.createElement("img");
 		img.setAttribute("src", imgObj.img);
@@ -100,6 +100,7 @@ class ImageObject{
 		this.img = img;
 		this.row = '';
 		this.col = '';
+		this.zOffset = 0;
 	}
 }
 
