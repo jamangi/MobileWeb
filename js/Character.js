@@ -79,7 +79,7 @@ class Character {
 			this.done = true;
 		else{
 			let check = this.map.items[destRow+"-"+destCol];
-			if (check && check["lockune"])
+			if (check && (check["lockune"] || check[mainChar.ID]))
 				this.done = true;
 		}
 

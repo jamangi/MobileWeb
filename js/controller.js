@@ -1,6 +1,7 @@
 class Controller {
 	constructor (char) {
 		this.character = char;
+		window.mainChar = char;
 		this.gb = document.getElementById("gamebox");
 		this.runButton = document.getElementById("runButton");
 		this.findButton = document.getElementById("findButton");
