@@ -87,7 +87,7 @@ class Controller {
 
 	makeClickListener() {
 		let home = this;
-		function processClick() {
+		function processClick(event) {
 			//reset display - display class
 
 			let mapRow = Math.floor((event.clientY+home.gb.scrollTop) / home.character.map.cellSize); 
